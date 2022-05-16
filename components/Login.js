@@ -48,50 +48,29 @@ export default function Register() {
         }}>
         <Image source={logo} style={styles.logo} />
 
-        {/*textinputs*/}
-        <TextInput
-          style={styles.textBox}
-          label="Name"
-          placeholder="Enter Your Name"
-        />
+        {/*textinputs*/}        
         <TextInput
           style={styles.textBox}
           label="Email"
           placeholder="Enter Your Email"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Address"
-          placeholder="Enter Your Address"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Contact"
-          placeholder="Enter Your Contact Number"
-        />
+        />        
         <TextInput
           style={styles.textBox}
           label="Password"
           secureTextEntry
           placeholder="Enter Password"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Confirm Password"
-          secureTextEntry
-          placeholder="Enter Password Again"
-        />
+        />        
         <Button
           mode="contained"
           onPress={() => console.log('Pressed')}
           style={styles.regBtn}>
-          Register
+          LOGIN
         </Button>
 
         <Text style={styles.loginText}>
-          Already a member{' '}
+          Not a registed member{' '}
           <Button mode="text" onPress={() => console.log('Pressed')}>
-            Login
+            Register
           </Button>
         </Text>
       </View>
