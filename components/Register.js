@@ -14,13 +14,7 @@ export default function Register({accentColor}) {
   return (
     <>
       <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingBottom: '30%',
-        }}>
+        style={styles.viewContainer}>
         <Image source={logo} style={styles.logo} />
 
         <Text style={styles.textHeading}>Get Registered!</Text>

@@ -32,7 +32,7 @@ export default function Register({ accentColor }) {
       setCollectorMode(accentColor)
       setbuyerMode('black')
     }
-    
+
   };
 
 
@@ -40,12 +40,7 @@ export default function Register({ accentColor }) {
   return (
     <>
       <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
+        style={styles.viewContainer}>
 
         <Image source={logo} style={styles.logo} />
 
@@ -53,11 +48,11 @@ export default function Register({ accentColor }) {
 
         <View style={styles.loginRow}>
 
-          <Text style={styles.loginText} style={{color:collectorMode}}>
+          <Text style={styles.loginText} style={{ color: collectorMode }}>
             Collector Mode &nbsp;
           </Text>
           <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color={accentColor} />
-          <Text style={styles.loginText} style={{color:buyerMode}}>
+          <Text style={styles.loginText} style={{ color: buyerMode }}>
             &nbsp; Buyer Mode
           </Text>
         </View>

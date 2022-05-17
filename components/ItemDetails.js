@@ -9,18 +9,18 @@ import type {Node} from 'react';
 import {List} from 'react-native-paper';
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import styles from './Styles';
-import {useState} from 'react/cjs/react.production.min';
+import {useState} from 'react';
 import {Switch} from 'react-native-paper';
 import {DataTable} from 'react-native-paper';
 import {Subheading} from 'react-native-paper';
 
 export default function Register({accentColor}) {
-  //dropdown list variables
-  const [expanded, setExpanded] = React.useState(true);
+  //dropdown state
+  const [expanded, setExpanded] = useState(true);
   const handlePress = () => setExpanded(!expanded);
 
-  //switch  variables
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  //switch  state
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);
     console.log(isSwitchOn);
@@ -29,16 +29,10 @@ export default function Register({accentColor}) {
   return (
     <>
       <View
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingBottom: '30%',
-        }}>
-        <Image source={logo} style={styles.logo} />
+        style={styles.viewContainer}>
+       
 
-        <Text style={styles.textHeading}>Item Details</Text>
+        <Text style={styles.textHeading} >Item Details</Text>
 
         <DataTable style={styles.dataTable}>
           <DataTable.Row>

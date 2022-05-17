@@ -39,6 +39,7 @@ export default StyleSheet.create({
   textHeading: {
     fontSize: 25,
     margin: 10,
+    marginTop:30
   },
   dropList: {
     width: 350,
@@ -49,4 +50,12 @@ export default StyleSheet.create({
   dataTable: {
     width: '90%',
   },
+  viewContainer:
+  {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: '30%',
+  }
 });
