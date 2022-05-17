@@ -40,14 +40,14 @@ export default function Register({ accentColor }) {
           </DataTable.Row>
           <DataTable.Row>
             <DataTable.Cell>ITEM WEIGHT</DataTable.Cell>
-            <DataTable.Cell numeric>Highest Bid: BID AMOUNT</DataTable.Cell>
+            <DataTable.Cell numeric>Highest Bid: 1000000LKR</DataTable.Cell>
           </DataTable.Row>
           <DataTable.Row>
             <DataTable.Cell>PRICE</DataTable.Cell>
           </DataTable.Row>
         </DataTable>
 
-        <Subheading style={{ marginTop: 5 }}>BIDS</Subheading>
+        <Subheading style={{ marginTop: 20, fontWeight:'900' }}>BIDS</Subheading>
         {/*bids*/}
         <ScrollView
           contentContainerStyle={{
