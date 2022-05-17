@@ -1,20 +1,21 @@
 import * as React from 'react';
-import {AppRegistry} from 'react-native';
-import {Provider as PaperProvider} from 'react-native-paper';
-import {name as appName} from './app.json';
+import { AppRegistry } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { name as appName } from './app.json';
 import logo from '../assests/img/logo.png';
-import {TextInput} from 'react-native-paper';
-import {Button} from 'react-native-paper';
-import type {Node} from 'react';
-import {List} from 'react-native-paper';
-import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { Button } from 'react-native-paper';
+import type { Node } from 'react';
+import { List } from 'react-native-paper';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import styles from './Styles';
-import {useState} from 'react';
-import {Switch} from 'react-native-paper';
-import {DataTable} from 'react-native-paper';
-import {Subheading} from 'react-native-paper';
+import { useState } from 'react';
+import { Switch } from 'react-native-paper';
+import { DataTable, Subheading, Appbar } from 'react-native-paper';
 
-export default function Register({accentColor}) {
+
+
+export default function Register({ accentColor }) {
   //dropdown state
   const [expanded, setExpanded] = useState(true);
   const handlePress = () => setExpanded(!expanded);
@@ -30,7 +31,12 @@ export default function Register({accentColor}) {
     <>
       <View
         style={styles.viewContainer}>
-       
+        <Appbar style={styles.appBar}>
+
+          <Appbar.BackAction onPress={() => { }} />
+
+        </Appbar>
+
 
         <Text style={styles.textHeading} >Item Details</Text>
 
@@ -48,7 +54,7 @@ export default function Register({accentColor}) {
           </DataTable.Row>
         </DataTable>
 
-        <Subheading style={{marginTop: 5}}>BIDS</Subheading>
+        <Subheading style={{ marginTop: 5 }}>BIDS</Subheading>
         {/*bids*/}
         <ScrollView
           contentContainerStyle={{
@@ -57,7 +63,7 @@ export default function Register({accentColor}) {
             alignItems: 'center',
             justifyContent: 'center',
           }}
-          style={{width: '100%'}}>
+          style={{ width: '100%' }}>
           <DataTable style={styles.dataTable}>
             <DataTable.Row>
               <DataTable.Cell>BIDDER NAME</DataTable.Cell>

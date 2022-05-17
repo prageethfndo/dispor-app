@@ -1,9 +1,12 @@
 import {StyleSheet} from 'react-native';
-
+const accentColor = '#038a37';
 //keep all global style here
 export default StyleSheet.create({
+  
   logo: {
     //styles for logo here
+    //#038a37 - accent color 
+
     margin: 25,
   },
   textBox: {
@@ -57,5 +60,9 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: '30%',
+  },
+  appBar:{
+    width:"100%", 
+    backgroundColor:accentColor
   }
 });
