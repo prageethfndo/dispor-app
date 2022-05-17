@@ -32,7 +32,7 @@ export default function Register({ accentColor }) {
     <>
       <View
         style={styles.viewContainer}>
-        <AppBar title={'Item Details'} backAction={()=>{console.log('back')}} />
+        <AppBar title={'Item Details'} backAction={()=>{console.log('bac')}} />
         <DataTable style={styles.dataTable}>
           <DataTable.Row>
             <DataTable.Cell>ITEM NAME</DataTable.Cell>

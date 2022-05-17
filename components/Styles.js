@@ -64,5 +64,52 @@ export default StyleSheet.create({
   appBar:{
     width:"100%", 
     backgroundColor:accentColor
+  },
+  profileBar:{
+    height:100,
+    width:"100%", 
+    backgroundColor:accentColor
+  },
+  avatar:{
+    marginLeft:20
+  },
+  statsCard:{
+    height:100,
+    width:'45%',
+    marginTop:10,
+    backgroundColor:'#E7E1DB'
+  },
+  cardRow:{
+    display:'flex',
+    flexDirection:'row',
+    width:'100%',
+    justifyContent:'space-evenly',
+    alignItems:'center'
+  },
+  statCardTitle:{
+    fontSize:15, 
+    fontWeight:'100',
+
+  },
+  statCardValue:{
+    fontSize:20,
+    fontWeight:'900',
+    
+  },
+  itemCardText:{
+    fontSize:15,
+    color:'#000',
+    fontWeight:'400'
+  },
+  itemCard:{
+    height:100,
+    width:'90%',
+    marginTop:10,
+    backgroundColor:'#E7E1DB'
+  },
+  itemCardTitle:{
+    fontSize:20,
+    fontWeight:'600',
+    color:'#000'
   }
 });
