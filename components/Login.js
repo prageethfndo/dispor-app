@@ -4,19 +4,29 @@ import { AppRegistry } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import logo from '../assests/img/logo.png';
-import { Button,Switch, TextInput} from 'react-native-paper';
+import { Button, Switch, TextInput } from 'react-native-paper';
 import type { Node } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import styles from './Styles'
-import { useState } from 'react/cjs/react.production.min';
+import { useState } from 'react';
 
-export default function Register({accentColor}) {
-  
+export default function Register({ accentColor }) {
 
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [mode, setMode] = useState("collector")
+
+
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn)
-    console.log(isSwitchOn)
+
+    if (mode === "collector") {
+      setMode("buyer")
+    }
+    else if (mode === "buyer") {
+      setMode("collector")
+    }
+    console.log(mode)
   };
 
 
@@ -30,23 +40,23 @@ export default function Register({accentColor}) {
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-          
+
         <Image source={logo} style={styles.logo} />
 
         <Text style={styles.textHeading}>Login</Text>
 
         <View style={styles.loginRow}>
 
-<Text style={styles.loginText}>
-  Collector Mode &nbsp;
-</Text>
-<Switch value={isSwitchOn} onValueChange={onToggleSwitch}  color={accentColor}/>
-<Text style={styles.loginText} >
-&nbsp; Buyer Mode 
-</Text>
-</View>
+          <Text style={styles.loginText}>
+            Collector Mode &nbsp;
+          </Text>
+          <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color={accentColor} />
+          <Text style={styles.loginText} >
+            &nbsp; Buyer Mode
+          </Text>
+        </View>
 
-       
+
         {/*textinputs*/}
         <TextInput
           style={styles.textBox}
