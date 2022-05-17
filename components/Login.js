@@ -32,7 +32,7 @@ export default function Register({ accentColor }) {
       setCollectorMode(accentColor)
       setbuyerMode('black')
     }
-    console.log(mode)
+    
   };
 
 
