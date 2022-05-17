@@ -15,6 +15,8 @@ export default function Register({ accentColor }) {
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [mode, setMode] = useState("collector")
+  const [collectorMode, setCollectorMode] = useState("black")
+  const [buyerMode, setbuyerMode] = useState("black")
 
 
   const onToggleSwitch = () => {
@@ -22,9 +24,13 @@ export default function Register({ accentColor }) {
 
     if (mode === "collector") {
       setMode("buyer")
+      setbuyerMode(accentColor)
+      setCollectorMode('black')
     }
     else if (mode === "buyer") {
       setMode("collector")
+      setCollectorMode(accentColor)
+      setbuyerMode('black')
     }
     console.log(mode)
   };
@@ -47,11 +53,11 @@ export default function Register({ accentColor }) {
 
         <View style={styles.loginRow}>
 
-          <Text style={styles.loginText}>
+          <Text style={styles.loginText} style={{color:collectorMode}}>
             Collector Mode &nbsp;
           </Text>
           <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color={accentColor} />
-          <Text style={styles.loginText} >
+          <Text style={styles.loginText} style={{color:buyerMode}}>
             &nbsp; Buyer Mode
           </Text>
         </View>
