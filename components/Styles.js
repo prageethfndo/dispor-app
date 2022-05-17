@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+//keep all global style here
 export default StyleSheet.create({
     logo: {
         //styles for logo here
