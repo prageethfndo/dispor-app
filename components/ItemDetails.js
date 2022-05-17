@@ -32,9 +32,7 @@ export default function Register({ accentColor }) {
       <View
         style={styles.viewContainer}>
         <Appbar style={styles.appBar}>
-
           <Appbar.BackAction onPress={() => { }} />
-
         </Appbar>
 
 
