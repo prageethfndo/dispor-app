@@ -12,6 +12,7 @@ import styles from './Styles';
 import { useState } from 'react';
 import { Switch } from 'react-native-paper';
 import { DataTable, Subheading, Appbar } from 'react-native-paper';
+import AppBar from './AppBar';
 
 
 
@@ -31,13 +32,7 @@ export default function Register({ accentColor }) {
     <>
       <View
         style={styles.viewContainer}>
-        <Appbar style={styles.appBar}>
-          <Appbar.BackAction onPress={() => { }} />
-        </Appbar>
-
-
-        <Text style={styles.textHeading} >Item Details</Text>
-
+        <AppBar title={'Item Details'} backAction={()=>{console.log('back')}} />
         <DataTable style={styles.dataTable}>
           <DataTable.Row>
             <DataTable.Cell>ITEM NAME</DataTable.Cell>
