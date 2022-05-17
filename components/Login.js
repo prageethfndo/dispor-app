@@ -8,8 +8,8 @@ import { Button } from 'react-native-paper';
 import type { Node } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-export default function Register() {
-  const accentColor = '#038a37'
+export default function Register({accentColor}) {
+  
   const styles = StyleSheet.create({
     logo: {
       //styles for logo here
@@ -47,6 +47,9 @@ export default function Register() {
     },
     link:{
       color:'#038a37'
+    },
+    textHeading:{
+      fontSize:25
     }
   });
 
@@ -60,6 +63,9 @@ export default function Register() {
           justifyContent: 'space-between',
         }}>
         <Image source={logo} style={styles.logo} />
+
+        <Text style={styles.textHeading}>Login</Text>
+
 
         {/*textinputs*/}
         <TextInput
@@ -80,7 +86,7 @@ export default function Register() {
         <Button
           mode="contained"
           onPress={() => console.log('Pressed')}
-          style={styles.regBtn} color={'#038a37'}>
+          style={styles.regBtn} color={accentColor}>
           LOGIN
         </Button>
 
@@ -90,7 +96,7 @@ export default function Register() {
             Not a registered member?{''}
 
           </Text>
-          <Button mode="text" onPress={() => console.log('Pressed')} color={'#2b48ff'}>
+          <Button mode="text" onPress={() => console.log('Pressed')} color={accentColor}>
             Register
           </Button>
         </View>

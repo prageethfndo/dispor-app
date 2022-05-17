@@ -8,7 +8,9 @@ import Register from './components/Register.js';
 import Login from './components/Login.js';
 
 const App: () => Node = () => {
-  return <Login />;
+  const accentColor = '#038a37'
+
+  return <Login accentColor={accentColor}/>;
 };
 
 export default App;

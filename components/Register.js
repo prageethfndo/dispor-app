@@ -1,14 +1,14 @@
 import * as React from 'react';
-import {AppRegistry} from 'react-native';
-import {Provider as PaperProvider} from 'react-native-paper';
-import {name as appName} from './app.json';
+import { AppRegistry } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { name as appName } from './app.json';
 import logo from '../assests/img/logo.png';
-import {TextInput} from 'react-native-paper';
-import {Button} from 'react-native-paper';
-import type {Node} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { Button } from 'react-native-paper';
+import type { Node } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 
-export default function Register() {
+export default function Register({ accentColor }) {
   const styles = StyleSheet.create({
     logo: {
       //styles for logo here
@@ -33,8 +33,22 @@ export default function Register() {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 50,
+      
     },
+    loginRow: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop:20
+
+    },
+    link:{
+      color:'#038a37'
+    },
+    textHeading:{
+      fontSize:25
+    }
   });
 
   return (
@@ -45,55 +59,84 @@ export default function Register() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
+          paddingBottom: '30%'
+
         }}>
         <Image source={logo} style={styles.logo} />
 
-        {/*textinputs*/}
-        <TextInput
-          style={styles.textBox}
-          label="Name"
-          placeholder="Enter Your Name"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Email"
-          placeholder="Enter Your Email"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Address"
-          placeholder="Enter Your Address"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Contact"
-          placeholder="Enter Your Contact Number"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Password"
-          secureTextEntry
-          placeholder="Enter Password"
-        />
-        <TextInput
-          style={styles.textBox}
-          label="Confirm Password"
-          secureTextEntry
-          placeholder="Enter Password Again"
-        />
-        <Button
-          mode="contained"
-          onPress={() => console.log('Pressed')}
-          style={styles.regBtn}>
-          Register
-        </Button>
+        <Text style={styles.textHeading}>Get Registered!</Text>
 
-        <Text style={styles.loginText}>
-          Already a member{' '}
-          <Button mode="text" onPress={() => console.log('Pressed')}>
-            Login
+        {/*textinputs*/}
+        <ScrollView contentContainerStyle={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+
+        }} style={{ width: '100%' }}>
+          <TextInput
+            style={styles.textBox}
+            label="Name"
+            placeholder="Enter Your Name"
+            underlineColor={accentColor}
+            activeUnderlineColor={accentColor}
+          />
+          <TextInput
+            style={styles.textBox}
+            label="Email"
+            placeholder="Enter Your Email"
+            underlineColor={accentColor}
+            activeUnderlineColor={accentColor}
+          />
+          <TextInput
+            style={styles.textBox}
+            label="Address"
+            placeholder="Enter Your Address"
+            underlineColor={accentColor}
+            activeUnderlineColor={accentColor}
+          />
+          <TextInput
+            style={styles.textBox}
+            label="Contact"
+            placeholder="Enter Your Contact Number"
+            underlineColor={accentColor}
+            activeUnderlineColor={accentColor}
+          />
+          <TextInput
+            style={styles.textBox}
+            label="Password"
+            secureTextEntry
+            placeholder="Enter Password"
+            underlineColor={accentColor}
+            activeUnderlineColor={accentColor}
+          />
+          <TextInput
+            style={styles.textBox}
+            label="Confirm Password"
+            secureTextEntry
+            placeholder="Enter Password Again"
+            underlineColor={accentColor}
+            activeUnderlineColor={accentColor}
+          />
+          <Button
+            mode="contained"
+            onPress={() => console.log('Pressed')}
+            style={styles.regBtn}
+            color={accentColor}>
+            Register
           </Button>
-        </Text>
+
+          <View style={styles.loginRow}>
+
+            <Text style={styles.loginText}>
+              Already a member?{''}
+
+            </Text>
+            <Button mode="text" onPress={() => console.log('Pressed')} color={accentColor}>
+              LOGIN
+            </Button>
+          </View>
+        </ScrollView>
       </View>
     </>
   );
