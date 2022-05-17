@@ -63,8 +63,8 @@ export default function Register({accentColor}) {
             onPress={handlePress}
             activeUnderlineColor={accentColor}
             style={styles.dropList}>
-            <List.Item title="First item" />
-            <List.Item title="Second item" />
+            <List.Item title="Plastic" />
+            <List.Item title="Glass" />
           </List.Accordion>
 
           <View style={styles.loginRow}>
