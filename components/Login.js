@@ -1,14 +1,15 @@
 import * as React from 'react';
-import {AppRegistry} from 'react-native';
-import {Provider as PaperProvider} from 'react-native-paper';
-import {name as appName} from './app.json';
+import { AppRegistry } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { name as appName } from './app.json';
 import logo from '../assests/img/logo.png';
-import {TextInput} from 'react-native-paper';
-import {Button} from 'react-native-paper';
-import type {Node} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { Button } from 'react-native-paper';
+import type { Node } from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default function Register() {
+  const accentColor = '#038a37'
   const styles = StyleSheet.create({
     logo: {
       //styles for logo here
@@ -33,8 +34,20 @@ export default function Register() {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      height: 50,
+      
+
     },
+    loginRow: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop:20
+
+    },
+    link:{
+      color:'#038a37'
+    }
   });
 
   return (
@@ -44,35 +57,45 @@ export default function Register() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
         }}>
         <Image source={logo} style={styles.logo} />
 
-        {/*textinputs*/}        
+        {/*textinputs*/}
         <TextInput
           style={styles.textBox}
           label="Email"
           placeholder="Enter Your Email"
-        />        
+          underlineColor={accentColor}
+          activeUnderlineColor={accentColor}
+        />
         <TextInput
           style={styles.textBox}
           label="Password"
           secureTextEntry
           placeholder="Enter Password"
-        />        
+          underlineColor={accentColor}
+          activeUnderlineColor={accentColor}
+        />
         <Button
           mode="contained"
           onPress={() => console.log('Pressed')}
-          style={styles.regBtn}>
+          style={styles.regBtn} color={'#038a37'}>
           LOGIN
         </Button>
 
-        <Text style={styles.loginText}>
-          Not a registed member{' '}
-          <Button mode="text" onPress={() => console.log('Pressed')}>
+        <View style={styles.loginRow}>
+
+          <Text style={styles.loginText}>
+            Not a registered member?{''}
+
+          </Text>
+          <Button mode="text" onPress={() => console.log('Pressed')} color={'#2b48ff'}>
             Register
           </Button>
-        </Text>
+        </View>
+
+
       </View>
     </>
   );
