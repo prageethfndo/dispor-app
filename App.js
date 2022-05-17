@@ -13,7 +13,7 @@ const App: () => Node = () => {
   //set the global accent color for all components
   const accentColor = '#038a37';
 
-  return <ItemDetails accentColor={accentColor} />;
+  return <Listing accentColor={accentColor} />;
 };
 
 export default App;

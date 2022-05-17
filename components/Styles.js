@@ -47,11 +47,11 @@ export default StyleSheet.create({
   dropList: {
     width: 350,
     marginTop: 20,
-    backgroundColor: '#dddddd',
-    borderBottomColor: '#038a37', //badu wda na
+    backgroundColor: '#dddddd',    
   },
   dataTable: {
     width: '90%',
+    marginTop:20
   },
   viewContainer:
   {

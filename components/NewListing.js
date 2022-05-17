@@ -60,8 +60,7 @@ export default function Register({accentColor}) {
           <List.Accordion
             title="Type"
             expanded={expanded}
-            onPress={handlePress}
-            activeUnderlineColor={accentColor}
+            onPress={handlePress}                                    
             style={styles.dropList}>
             <List.Item title="Plastic" />
             <List.Item title="Glass" />
