@@ -11,7 +11,7 @@ const App: () => Node = () => {
   //set the global accent color for all components 
   const accentColor = '#038a37'
 
-  return <Register accentColor={accentColor}/>;
+  return <Login accentColor={accentColor}/>;
 };
 
 export default App;
