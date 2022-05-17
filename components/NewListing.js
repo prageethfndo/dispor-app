@@ -6,11 +6,25 @@ import logo from '../assests/img/logo.png';
 import {TextInput} from 'react-native-paper';
 import {Button} from 'react-native-paper';
 import type {Node} from 'react';
+import {List} from 'react-native-paper';
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import styles from './Styles';
+import {useState} from 'react/cjs/react.production.min';
+import {Switch} from 'react-native-paper';
+import {Subheading} from 'react-native-paper';
 
 export default function Register({accentColor}) {
-  //styles are moved into Styles.js (global)
+  //dropdown list variables
+  const [expanded, setExpanded] = React.useState(true);
+  const handlePress = () => setExpanded(!expanded);
+
+  //switch  variables
+  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const onToggleSwitch = () => {
+    setIsSwitchOn(!isSwitchOn);
+    console.log(isSwitchOn);
+  };
+
   return (
     <>
       <View
@@ -23,7 +37,7 @@ export default function Register({accentColor}) {
         }}>
         <Image source={logo} style={styles.logo} />
 
-        <Text style={styles.textHeading}>Get Registered!</Text>
+        <Text style={styles.textHeading}>Create a listing</Text>
 
         {/*textinputs*/}
         <ScrollView
@@ -36,65 +50,49 @@ export default function Register({accentColor}) {
           style={{width: '100%'}}>
           <TextInput
             style={styles.textBox}
-            label="Name"
-            placeholder="Enter Your Name"
+            label="Title"
+            placeholder="Tell us what you are disposing"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
           />
+
+          {/* savendra meka poddk awul oi */}
+          <List.Accordion
+            title="Type"
+            expanded={expanded}
+            onPress={handlePress}
+            activeUnderlineColor={accentColor}
+            style={styles.dropList}>
+            <List.Item title="First item" />
+            <List.Item title="Second item" />
+          </List.Accordion>
+
+          <View style={styles.loginRow}>
+            <Text style={styles.loginText}>Units &nbsp;</Text>
+            <Switch
+              value={isSwitchOn}
+              onValueChange={onToggleSwitch}
+              color={accentColor}
+            />
+            <Text style={styles.loginText}>&nbsp; Weight</Text>
+          </View>
+
           <TextInput
             style={styles.textBox}
-            label="Email"
-            placeholder="Enter Your Email"
+            label="Quantity"
+            placeholder="Enter Waste Quantity"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
           />
-          <TextInput
-            style={styles.textBox}
-            label="Address"
-            placeholder="Enter Your Address"
-            underlineColor={accentColor}
-            activeUnderlineColor={accentColor}
-          />
-          <TextInput
-            style={styles.textBox}
-            label="Contact"
-            placeholder="Enter Your Contact Number"
-            underlineColor={accentColor}
-            activeUnderlineColor={accentColor}
-          />
-          <TextInput
-            style={styles.textBox}
-            label="Password"
-            secureTextEntry
-            placeholder="Enter Password"
-            underlineColor={accentColor}
-            activeUnderlineColor={accentColor}
-          />
-          <TextInput
-            style={styles.textBox}
-            label="Confirm Password"
-            secureTextEntry
-            placeholder="Enter Password Again"
-            underlineColor={accentColor}
-            activeUnderlineColor={accentColor}
-          />
+          <Text style={{marginTop: 20}}>You will earn</Text>
+          <Subheading>AMOUNT</Subheading>
           <Button
             mode="contained"
             onPress={() => console.log('Pressed')}
             style={styles.regBtn}
             color={accentColor}>
-            Register
+            Create Listing
           </Button>
-
-          <View style={styles.loginRow}>
-            <Text style={styles.loginText}>Already a member?{''}</Text>
-            <Button
-              mode="text"
-              onPress={() => console.log('Pressed')}
-              color={accentColor}>
-              LOGIN
-            </Button>
-          </View>
         </ScrollView>
       </View>
     </>
