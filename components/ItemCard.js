@@ -9,6 +9,7 @@ import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 export default function ItemCard() {
     return (
         <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
+            
             <Card.Content>
                 <Text style={Styles.itemCardTitle}>50 bottles for in Pannipitiya</Text>
 
@@ -30,11 +31,12 @@ export default function ItemCard() {
                 </View>
 
             </Card.Content>
-            <Divider />
+          
             <Card.Actions style={{display:'flex', flexDirection:'row', alignItems:'flex-end', width:'100%', justifyContent:'flex-end'}}>
                 <Button color='#fa4848' icon={'trash-can'} >Delete</Button>
                 <Button color='#48a7fa' icon={'playlist-edit'}>Edit</Button>
             </Card.Actions>
+            <Divider style={{backgroundColor:'#a6a6a6'}} />
         </Card>
     )
 }

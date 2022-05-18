@@ -12,7 +12,7 @@ import SellerMode from './components/SellerMode';
 
 const App: () => Node = () => {
   //set the global accent color for all components
-  const accentColor = '#038a37';
+  const accentColor = '#17AF82';
 
   //change
   return <SellerMode accentColor={accentColor} />;

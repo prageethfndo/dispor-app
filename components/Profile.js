@@ -15,6 +15,7 @@ export default function Profile({ username, role }) {
             <Text style={styles.profileText}> Welcome Back! </Text>
             <Text style={styles.profileUsername}> {`${username} (${role})`} </Text>
             </View>
+            
          
          
          

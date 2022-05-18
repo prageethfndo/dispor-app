@@ -11,7 +11,7 @@ import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import styles from './Styles';
 import { useState } from 'react';
 import { Switch } from 'react-native-paper';
-import { DataTable, Subheading, Appbar } from 'react-native-paper';
+import { DataTable, Subheading, Appbar,FAB } from 'react-native-paper';
 import AppBar from './AppBar';
 
 

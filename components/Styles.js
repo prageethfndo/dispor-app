@@ -82,6 +82,7 @@ export default StyleSheet.create({
   profileText: {
     color: '#fff',
     fontSize: 25,
+    fontWeight:'600'
   },
   profileUsername: {
     fontSize: 15,
@@ -138,9 +139,10 @@ export default StyleSheet.create({
   itemCard: {
 
     width: '90%',
-    marginTop: 10,
+    marginTop: 2,
+    marginBottom:2,
     padding: 7,
-    backgroundColor: '#e6edeb',
+    backgroundColor: '#f2f3f5',
     borderRadius:15,
     shadowColor:'transparent'
   },
@@ -158,5 +160,16 @@ export default StyleSheet.create({
   itemCardWeight: {
     fontWeight: '900',
     fontSize: 20
-  }
+  },
+  
+    fab: {
+      position: 'absolute',
+      margin: 16,
+      right: 0,
+      bottom: 0,
+    },
+    newBtn:{
+      borderRadius:20,
+      shadowColor:'transparent'
+    }
 });
