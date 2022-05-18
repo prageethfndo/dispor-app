@@ -4,16 +4,17 @@ import Styles from './Styles';
 import AppBar from './AppBar';
 import Profile from './Profile';
 import StatsCard from './StatsCard';
-import { Subheading, Card, Title, Button } from 'react-native-paper';
+import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
 export default function ItemCard() {
     return (
         <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
             <Card.Content>
                 <Text style={Styles.itemCardTitle}>50 bottles for in Pannipitiya</Text>
+
                 <View style={{
                     display: 'flex', flexDirection: 'row', alignItems: 'flex-start',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between', marginBottom: 5
                 }}>
 
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
@@ -29,6 +30,11 @@ export default function ItemCard() {
                 </View>
 
             </Card.Content>
+            <Divider />
+            <Card.Actions style={{display:'flex', flexDirection:'row', alignItems:'flex-end', width:'100%', justifyContent:'flex-end'}}>
+                <Button color='red'>Delete</Button>
+                <Button color='blue'>Edit</Button>
+            </Card.Actions>
         </Card>
     )
 }

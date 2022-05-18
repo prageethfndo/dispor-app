@@ -118,7 +118,7 @@ export default StyleSheet.create({
 
     width: '90%',
     marginTop: 10,
-    padding: 5,
+    padding: 7,
     backgroundColor: '#E7E1DB'
   },
   itemCardTitle: {
@@ -128,7 +128,7 @@ export default StyleSheet.create({
     marginBottom: 5
   },
   itemCardPrice: {
-    fontSize: 22,
+    fontSize: 25,
     fontWeight: '600',
     color: accentColor
   },
