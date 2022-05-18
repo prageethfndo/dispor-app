@@ -71,7 +71,7 @@ export default function Register({ accentColor }) {
           label="Password"
           secureTextEntry
           placeholder="Enter Password"
-          underlineColor={accentColor}
+          underlineColor={'transparent'}
           activeUnderlineColor={accentColor}
         />
         <Button

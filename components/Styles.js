@@ -24,6 +24,8 @@ export default StyleSheet.create({
     height: 50,
     width: '90%',
     marginTop: 15,
+    borderRadius:30,
+    shadowColor:'transparent'
   },
   loginText: {
     display: 'flex',
