@@ -68,7 +68,7 @@ export default StyleSheet.create({
     backgroundColor: accentColor
   },
   profileBar: {
-    marginTop:15,
+    
     height: 100,
     width: "100%",
     backgroundColor: 'transparent',
@@ -76,19 +76,21 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor:accentColor
   },
   profileText: {
-    color: 'black',
+    color: '#fff',
     fontSize: 25,
   },
   profileUsername: {
     fontSize: 15,
-    paddingLeft:5
+    paddingLeft:5,
+    color:'#fff'
   },
   avatar: {
     marginLeft: 20,
-    backgroundColor:accentColor,
+    backgroundColor:"#fff",
     marginRight:10
   },
   statsCard: {
@@ -97,9 +99,9 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: '45%',
     flexDirection: 'column',
-    marginTop: 20,
-    margin: 5,
-    backgroundColor: accentColor,
+    marginTop: 30,
+    marginBottom: 30,
+    backgroundColor: '#fff',
     borderRadius: 15
   },
   cardRow: {
@@ -112,18 +114,18 @@ export default StyleSheet.create({
   statCardTitle: {
     fontSize: 15,
     fontWeight: '100',
-    color: '#fff'
+    color: '#4a4a4a'
 
   },
   statCardUnit: {
-    color: 'yellow',
+    color: '#4a4a4a',
     fontSize: 15,
 
   },
   statCardValue: {
     fontSize: 20,
     fontWeight: '100',
-    color: 'yellow',
+    color: '#17AF82',
     fontSize: 30,
 
 
@@ -138,7 +140,9 @@ export default StyleSheet.create({
     width: '90%',
     marginTop: 10,
     padding: 7,
-    backgroundColor: '#E7E1DB'
+    backgroundColor: '#e6edeb',
+    borderRadius:15,
+    shadowColor:'transparent'
   },
   itemCardTitle: {
     fontSize: 20,

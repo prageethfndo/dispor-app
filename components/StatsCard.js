@@ -7,8 +7,8 @@ import { StyleSheet, View, Image, ScrollView } from 'react-native';
 export default function StatsCard({ title, value, unit, type }) {
     return (
         <Card style={Styles.statsCard}>
-            {type == 'earnings' ? <Avatar.Icon icon="cash-multiple" style={{ backgroundColor: 'transparent' }} /> :
-                <Avatar.Icon icon="package" style={{ backgroundColor: 'transparent' }} />}
+            {type == 'earnings' ? <Avatar.Icon icon="cash-multiple" color='#17AF82' style={{ backgroundColor: 'transparent' }} /> :
+                <Avatar.Icon icon="package" color='#17AF82' style={{ backgroundColor: 'transparent' }} />}
 
 
             <Card.Content>

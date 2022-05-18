@@ -11,13 +11,9 @@ export default function SellerMode() {
         <View style={Styles.viewContainer}>
             <Profile username={'Kumara'} role={'Seller'}/>
 
-            <View style={Styles.cardRow}>
-                <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'}/>
-                <StatsCard title={'Sold'} value={'500 '} unit={'KG'}/>
-            </View>
-
+         
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width:'90%' }}>
-             <Text style={{ marginTop: 20, fontSize:15 }} >Your items on sale</Text>
+             <Text style={{ marginTop: 20, fontSize:20, color:'#000', marginBottom:10 }} >Your items on sale</Text>
             </View>
 
 

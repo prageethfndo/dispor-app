@@ -32,8 +32,8 @@ export default function ItemCard() {
             </Card.Content>
             <Divider />
             <Card.Actions style={{display:'flex', flexDirection:'row', alignItems:'flex-end', width:'100%', justifyContent:'flex-end'}}>
-                <Button color='red'>Delete</Button>
-                <Button color='blue'>Edit</Button>
+                <Button color='#fa4848' icon={'trash-can'} >Delete</Button>
+                <Button color='#48a7fa' icon={'playlist-edit'}>Edit</Button>
             </Card.Actions>
         </Card>
     )
