@@ -1,5 +1,7 @@
+import { transform } from '@babel/core';
 import { StyleSheet } from 'react-native';
-const accentColor = '#038a37';
+import { transparent } from 'react-native-paper/lib/typescript/styles/colors';
+const accentColor = '#17AF82';
 //keep all global style here
 export default StyleSheet.create({
 
@@ -66,22 +68,39 @@ export default StyleSheet.create({
     backgroundColor: accentColor
   },
   profileBar: {
+    marginTop:15,
     height: 100,
     width: "100%",
-    backgroundColor: accentColor
+    backgroundColor: 'transparent',
+    border: 'none',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  profileText: {
+    color: 'black',
+    fontSize: 25,
+  },
+  profileUsername: {
+    fontSize: 15,
+    paddingLeft:5
   },
   avatar: {
-    marginLeft: 20
+    marginLeft: 20,
+    backgroundColor:accentColor,
+    marginRight:10
   },
   statsCard: {
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
     width: '45%',
-    flexDirection:'column',
+    flexDirection: 'column',
     marginTop: 20,
-    margin:5,
-    backgroundColor: accentColor
+    margin: 5,
+    backgroundColor: accentColor,
+    borderRadius: 15
   },
   cardRow: {
     display: 'flex',
@@ -96,17 +115,17 @@ export default StyleSheet.create({
     color: '#fff'
 
   },
-  statCardUnit:{
-    color:'yellow',
-    fontSize:15,
-    
+  statCardUnit: {
+    color: 'yellow',
+    fontSize: 15,
+
   },
   statCardValue: {
     fontSize: 20,
     fontWeight: '100',
     color: 'yellow',
     fontSize: 30,
-    
+
 
   },
   itemCardText: {
