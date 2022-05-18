@@ -9,7 +9,7 @@ import ItemCard from './ItemCard';
 export default function SellerMode() {
     return (
         <View style={Styles.viewContainer}>
-            <Profile username={'Kumara'} />
+            <Profile username={'Kumara'} role={'Seller'}/>
 
             <View style={Styles.cardRow}>
                 <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'}/>

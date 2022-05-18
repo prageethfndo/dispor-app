@@ -2,13 +2,13 @@ import * as React from 'react';
 import styles from './Styles';
 import { DataTable, Subheading, Appbar, Text,Avatar } from 'react-native-paper';
 import user from '../assests/img/user.png';
-export default function Profile({ username }) {
+export default function Profile({ username, role }) {
     return (
         <Appbar style={styles.profileBar}>
            
            <Avatar.Image size={60} source={require('../assests/img/user.png')} style={styles.avatar} />
 
-            <Appbar.Content title={'Welcome'} subtitle={'Kumara'} />
+            <Appbar.Content title={'Welcome'} subtitle={`${username} (${role})`} />
         </Appbar>
     )
 }
