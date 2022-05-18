@@ -8,14 +8,16 @@ import { Subheading, Card, Title, Button } from 'react-native-paper';
 
 export default function ItemCard() {
     return (
-        <Card style={Styles.itemCard}>
+        <Card style={Styles.itemCard} onPress={()=>{console.log('tapped')}}>
             <Card.Content>
+            <Text style={Styles.itemCardTitle}>50 bottles for in Pannipitiya</Text>
                 <View style={{ display: 'flex', flexDirection: 'row',alignItems:'flex-start',
                  justifyContent:'space-between' }}>
+                     
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent:'flex-start' }}>
-                        <Text style={Styles.itemCardTitle}>50 bottles</Text>
-                        <Text style={Styles.itemCardText}>50 KG</Text>
-                        <Text style={Styles.itemCardText}>5000LKR</Text>
+                       
+                        <Text style={Styles.itemCardWeight}>50 KG</Text>
+                        <Text style={Styles.itemCardPrice}>5000 LKR</Text>
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent:'flex-start' }}>
                         <Text style={Styles.itemCardText}>Status: Active</Text>

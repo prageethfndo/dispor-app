@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 const accentColor = '#038a37';
 //keep all global style here
 export default StyleSheet.create({
-  
+
   logo: {
     //styles for logo here
     //#038a37 - accent color 
@@ -42,16 +42,16 @@ export default StyleSheet.create({
   textHeading: {
     fontSize: 25,
     margin: 10,
-    marginTop:30
+    marginTop: 30
   },
   dropList: {
     width: 350,
     marginTop: 20,
-    backgroundColor: '#dddddd',    
+    backgroundColor: '#dddddd',
   },
   dataTable: {
     width: '90%',
-    marginTop:20
+    marginTop: 20
   },
   viewContainer:
   {
@@ -61,55 +61,78 @@ export default StyleSheet.create({
     justifyContent: 'center',
     paddingBottom: '30%',
   },
-  appBar:{
-    width:"100%", 
-    backgroundColor:accentColor
+  appBar: {
+    width: "100%",
+    backgroundColor: accentColor
   },
-  profileBar:{
-    height:100,
-    width:"100%", 
-    backgroundColor:accentColor
+  profileBar: {
+    height: 100,
+    width: "100%",
+    backgroundColor: accentColor
   },
-  avatar:{
-    marginLeft:20
+  avatar: {
+    marginLeft: 20
   },
-  statsCard:{
-    height:100,
-    width:'45%',
-    marginTop:10,
-    backgroundColor:'#E7E1DB'
+  statsCard: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    width: '45%',
+    flexDirection:'column',
+    marginTop: 10,
+    backgroundColor: accentColor
   },
-  cardRow:{
-    display:'flex',
-    flexDirection:'row',
-    width:'100%',
-    justifyContent:'space-evenly',
-    alignItems:'center'
+  cardRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
   },
-  statCardTitle:{
-    fontSize:15, 
-    fontWeight:'100',
+  statCardTitle: {
+    fontSize: 15,
+    fontWeight: '100',
+    color: '#fff'
 
   },
-  statCardValue:{
-    fontSize:20,
-    fontWeight:'900',
+  statCardUnit:{
+    color:'yellow',
+    fontSize:10,
     
   },
-  itemCardText:{
-    fontSize:15,
-    color:'#000',
-    fontWeight:'400'
+  statCardValue: {
+    fontSize: 20,
+    fontWeight: '100',
+    color: 'yellow',
+    fontSize: 30,
+    
+
   },
-  itemCard:{
-    height:100,
-    width:'90%',
-    marginTop:10,
-    backgroundColor:'#E7E1DB'
+  itemCardText: {
+    fontSize: 15,
+    color: '#000',
+    fontWeight: '400'
   },
-  itemCardTitle:{
-    fontSize:20,
-    fontWeight:'600',
-    color:'#000'
+  itemCard: {
+
+    width: '90%',
+    marginTop: 10,
+    padding: 5,
+    backgroundColor: '#E7E1DB'
+  },
+  itemCardTitle: {
+    fontSize: 20,
+    fontWeight: '400',
+    color: '#000',
+    marginBottom: 5
+  },
+  itemCardPrice: {
+    fontSize: 22,
+    fontWeight: '600',
+    color: accentColor
+  },
+  itemCardWeight: {
+    fontWeight: '900',
+    fontSize: 20
   }
 });

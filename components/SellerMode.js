@@ -12,12 +12,15 @@ export default function SellerMode() {
             <Profile username={'Kumara'} />
 
             <View style={Styles.cardRow}>
-                <StatsCard title={'Earnings'} value={'546574545 LKR'} />
-                <StatsCard title={'Sold'} value={'500 KG'} />
+                <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} />
+                <StatsCard title={'Sold'} value={'500 '} unit={'KG'}/>
+            </View>
+
+            <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width:'90%' }}>
+             <Text style={{ marginTop: 20, fontSize:15 }} >Your items on sale</Text>
             </View>
 
 
-            <Subheading style={{ marginTop: 20 }} >You items on sale</Subheading>
 
             <ScrollView
                 contentContainerStyle={{
@@ -27,13 +30,13 @@ export default function SellerMode() {
                     justifyContent: 'center',
                 }}
                 style={{ width: '100%' }}>
-                    <ItemCard/>
-                    <ItemCard/>
-                    <ItemCard/>
-                    <ItemCard/>
-                    <ItemCard/>
-                    <ItemCard/>
-                    <ItemCard/>
+                <ItemCard />
+                <ItemCard />
+                <ItemCard />
+                <ItemCard />
+                <ItemCard />
+                <ItemCard />
+                <ItemCard />
             </ScrollView>
 
         </View>
