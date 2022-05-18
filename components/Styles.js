@@ -79,14 +79,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: '45%',
     flexDirection:'column',
-    marginTop: 10,
+    marginTop: 20,
+    margin:5,
     backgroundColor: accentColor
   },
   cardRow: {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     alignItems: 'center'
   },
   statCardTitle: {
@@ -97,7 +98,7 @@ export default StyleSheet.create({
   },
   statCardUnit:{
     color:'yellow',
-    fontSize:10,
+    fontSize:15,
     
   },
   statCardValue: {

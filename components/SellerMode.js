@@ -12,7 +12,7 @@ export default function SellerMode() {
             <Profile username={'Kumara'} />
 
             <View style={Styles.cardRow}>
-                <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} />
+                <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'}/>
                 <StatsCard title={'Sold'} value={'500 '} unit={'KG'}/>
             </View>
 
