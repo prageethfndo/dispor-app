@@ -9,7 +9,8 @@ import Login from './components/Login.js';
 import Listing from './components/NewListing.js';
 import ItemDetails from './components/ItemDetails';
 import SellerMode from './components/SellerMode';
-
+import CollectorMode from './components/CollectorMode';
+import Listings from './components/Listings';
 const App: () => Node = () => {
   //set the global accent color for all components
   const accentColor = '#17AF82';

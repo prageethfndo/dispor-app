@@ -5,17 +5,17 @@ import AppBar from './AppBar';
 import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
-import ItemCard from './ItemCard';
-export default function SellerMode({ accentColor }) {
+import ItemCardCollector from './ItemCardCollector';
+export default function CollectorMode({ accentColor }) {
     return (
         <View style={Styles.viewContainer}>
-            <Profile username={'Kumara'} role={'seller'} />
+            <Profile username={'Kumara'} role={'collector'} />
 
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>
-                <Text style={{ marginTop: 20, fontSize: 20, color: '#000', marginBottom: 10 }} >Your items on sale</Text>
-                <Button icon="plus" mode="contained" onPress={() => console.log('Pressed')} color={accentColor} style={Styles.newBtn}>
-                    New Item
+                <Text style={{ marginTop: 20, fontSize: 20, color: '#000', marginBottom: 10 }} >Items you bid</Text>
+                <Button icon="menu" mode="contained" onPress={() => console.log('Pressed')} color={accentColor} style={Styles.newBtn}>
+                    View all listings
                 </Button>
             </View>
 
@@ -30,20 +30,21 @@ export default function SellerMode({ accentColor }) {
                     paddingBottom: 100
                 }}
                 style={{ width: '100%' }}>
-                <ItemCard title={'50 bottles for in Pannipitiya'}
+                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
                     maxBid={'5963'} />
-
-                <ItemCard title={'50 bottles for in Pannipitiya'}
+                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
                     maxBid={'5963'} />
-
-
-                <ItemCard title={'50 bottles for in Pannipitiya'}
+                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
                     maxBid={'5963'} />
-
-
+                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
+                    amount={'50 KG'} price={'5000'} status={'Active'}
+                    maxBid={'5963'} />
+                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
+                    amount={'50 KG'} price={'5000'} status={'Active'}
+                    maxBid={'5963'} />
 
             </ScrollView>
 
