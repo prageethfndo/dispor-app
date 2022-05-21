@@ -10,7 +10,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import styles from './Styles'
 import { useState } from 'react';
 
-export default function Register({ accentColor }) {
+export default function Register({ accentColor, navigation }) {
 
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -76,7 +76,7 @@ export default function Register({ accentColor }) {
         />
         <Button
           mode="contained"
-          onPress={() => console.log('Pressed')}
+          onPress={() => navigation.navigate('SellerMode')}
           style={styles.regBtn} color={accentColor}>
           LOGIN
         </Button>
@@ -87,7 +87,7 @@ export default function Register({ accentColor }) {
             Not a registered member?{''}
 
           </Text>
-          <Button mode="text" onPress={() => console.log('Pressed')} color={accentColor}>
+          <Button mode="text" color={accentColor}>
             Register
           </Button>
         </View>
