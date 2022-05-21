@@ -6,10 +6,10 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
-export default function ItemCard({title, amount, price, status, maxBid}) {
+export default function ItemCard({ title, amount, price, status, maxBid, navigation, editCard }) {
     return (
         <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
-            
+
             <Card.Content>
                 <Text style={Styles.itemCardTitle}>{title}</Text>
 
@@ -31,12 +31,13 @@ export default function ItemCard({title, amount, price, status, maxBid}) {
                 </View>
 
             </Card.Content>
-          
-            <Card.Actions style={{display:'flex', flexDirection:'row', alignItems:'flex-end', width:'100%', justifyContent:'flex-end'}}>
+
+            <Card.Actions style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', width: '100%', justifyContent: 'flex-end' }}>
                 <Button color='#fa4848' icon={'trash-can'} >Delete</Button>
-                <Button color='#48a7fa' icon={'playlist-edit'}>Edit</Button>
+                <Button color='#48a7fa' icon={'playlist-edit'}
+                    onPress={() => editCard()}>Edit</Button>
             </Card.Actions>
-            <Divider style={{backgroundColor:'#a6a6a6'}} />
+            <Divider style={{ backgroundColor: '#a6a6a6' }} />
         </Card>
     )
 }

@@ -11,8 +11,10 @@ import ItemDetails from './components/ItemDetails';
 import SellerMode from './components/SellerMode';
 import CollectorMode from './components/CollectorMode';
 import Listings from './components/Listings';
+import NewListing from './components/NewListing.js';
 import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -28,8 +30,13 @@ const App: () => Node = () => {
         <Stack.Screen name='login' options={{title:"", headerShown:false}}>
           {props => <Login {...props} accentColor={accentColor} />}
         </Stack.Screen>
+
         <Stack.Screen name='SellerMode' options={{title:"", headerShown:false}}>
           {props => <SellerMode {...props} accentColor={accentColor} />}
+        </Stack.Screen>
+
+        <Stack.Screen name='NewListing' options={{title:"", headerShown:false}}>
+          {props => <NewListing {...props} accentColor={accentColor} />}
         </Stack.Screen>
       </Stack.Navigator>
       {/** <SellerMode accentColor={accentColor} /> */}

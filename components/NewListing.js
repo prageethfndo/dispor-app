@@ -13,7 +13,7 @@ import {useState} from 'react/cjs/react.production.min';
 import {Switch} from 'react-native-paper';
 import {Subheading} from 'react-native-paper';
 
-export default function Register({accentColor}) {
+export default function NewListing({accentColor, navigation}) {
   //dropdown list variables
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
@@ -33,7 +33,7 @@ export default function Register({accentColor}) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingBottom: '30%',
+          paddingBottom: '15%',
         }}>
         <Image source={logo} style={styles.logo} />
 
