@@ -15,25 +15,33 @@ export default function Register({ accentColor, navigation }) {
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [mode, setMode] = useState("collector")
+
   const [collectorMode, setCollectorMode] = useState("black")
-  const [buyerMode, setbuyerMode] = useState("black")
+  const [sellerMode, setSellerMode] = useState("black")
 
 
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn)
 
     if (mode === "collector") {
-      setMode("buyer")
-      setbuyerMode(accentColor)
+      setMode("seller")
+      setSellerMode(accentColor)
       setCollectorMode('black')
     }
-    else if (mode === "buyer") {
+    else if (mode === "seller") {
       setMode("collector")
       setCollectorMode(accentColor)
-      setbuyerMode('black')
+      setSellerMode('black')
     }
 
   };
+
+  const LoginRouter=()=>{
+    console.log(mode)
+    if(mode==='collector')
+    {navigation.navigate('CollectorMode')}
+    else if (mode==='seller'){navigation.navigate('SellerMode')}
+  }
 
 
   //styles are moved into Styles.js (global) 
@@ -52,8 +60,8 @@ export default function Register({ accentColor, navigation }) {
             Collector Mode &nbsp;
           </Text>
           <Switch value={isSwitchOn} onValueChange={onToggleSwitch} color={accentColor} />
-          <Text style={styles.loginText} style={{ color: buyerMode }}>
-            &nbsp; Buyer Mode
+          <Text style={styles.loginText} style={{ color: sellerMode }}>
+            &nbsp; Seller Mode
           </Text>
         </View>
 
@@ -76,7 +84,7 @@ export default function Register({ accentColor, navigation }) {
         />
         <Button
           mode="contained"
-          onPress={() => navigation.navigate('SellerMode')}
+          onPress={() => LoginRouter()}
           style={styles.regBtn} color={accentColor}>
           LOGIN
         </Button>

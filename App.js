@@ -35,6 +35,11 @@ const App: () => Node = () => {
           {props => <SellerMode {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
+
+        <Stack.Screen name='CollectorMode' options={{title:"", headerShown:false}}>
+          {props => <CollectorMode {...props} accentColor={accentColor} />}
+        </Stack.Screen>
+
         <Stack.Screen name='NewListing' options={{title:"", headerShown:false}}>
           {props => <NewListing {...props} accentColor={accentColor} />}
         </Stack.Screen>
