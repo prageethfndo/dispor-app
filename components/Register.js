@@ -9,7 +9,7 @@ import type {Node} from 'react';
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import styles from './Styles';
 
-export default function Register({accentColor}) {
+export default function Register({accentColor, navigation}) {
   //styles are moved into Styles.js (global)
   return (
     <>
@@ -74,7 +74,7 @@ export default function Register({accentColor}) {
           />
           <Button
             mode="contained"
-            onPress={() => console.log('Pressed')}
+            onPress={() => navigation.navigate('Login')}
             style={styles.regBtn}
             color={accentColor}>
             Register
@@ -84,7 +84,7 @@ export default function Register({accentColor}) {
             <Text style={styles.loginText}>Already a member?{''}</Text>
             <Button
               mode="text"
-              onPress={() => console.log('Pressed')}
+              onPress={() => navigation.navigate('Login')}
               color={accentColor}>
               LOGIN
             </Button>

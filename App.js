@@ -12,6 +12,7 @@ import SellerMode from './components/SellerMode';
 import CollectorMode from './components/CollectorMode';
 import Listings from './components/Listings';
 import NewListing from './components/NewListing.js';
+import Bidding from './components/Bidding.js';
 import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -27,8 +28,12 @@ const App: () => Node = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name='login' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='Login' options={{title:"", headerShown:false}}>
           {props => <Login {...props} accentColor={accentColor} />}
+        </Stack.Screen>
+
+        <Stack.Screen name='Register' options={{title:"", headerShown:false}}>
+          {props => <Register {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
         <Stack.Screen name='SellerMode' options={{title:"", headerShown:false}}>
@@ -43,6 +48,15 @@ const App: () => Node = () => {
         <Stack.Screen name='NewListing' options={{title:"", headerShown:false}}>
           {props => <NewListing {...props} accentColor={accentColor} />}
         </Stack.Screen>
+
+        <Stack.Screen name='Listings' options={{title:"", headerShown:false}}>
+          {props => <Listings {...props} accentColor={accentColor} />}
+        </Stack.Screen>
+
+        <Stack.Screen name='Bidding' options={{title:"", headerShown:false}}>
+          {props => <Bidding {...props} accentColor={accentColor} />}
+        </Stack.Screen>        
+
       </Stack.Navigator>
       {/** <SellerMode accentColor={accentColor} /> */}
     </NavigationContainer>

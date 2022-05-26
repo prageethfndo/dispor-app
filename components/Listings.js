@@ -7,7 +7,7 @@ import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCardCollector from './ItemCardCollector';
 
-export default function Listings() {
+export default function Listings({navigation}) {
     return (
         <View
             style={Styles.viewContainer} style={{paddingBottom:'15%'}}>
@@ -22,27 +22,46 @@ export default function Listings() {
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} />
+                    maxBid={'5963'}  
+                    navigation = {navigation} 
+                    newBid={true}             
+                    />
+                    
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} />
+                    maxBid={'5963'} 
+                    navigation = {navigation} 
+                    newBid={true}  
+                    />
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} />
+                    maxBid={'5963'} 
+                    navigation = {navigation} 
+                    newBid={true}  
+                    />
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} />
+                    maxBid={'5963'} 
+                    navigation = {navigation} 
+                    newBid={true}  
+                    />
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} />
+                    maxBid={'5963'} 
+                    navigation = {navigation} 
+                    newBid={true}  
+                    />
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} />
+                    maxBid={'5963'} 
+                    navigation = {navigation} 
+                    newBid={true}  
+                    />
 
             </ScrollView>
         </View>

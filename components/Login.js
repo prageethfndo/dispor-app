@@ -95,7 +95,9 @@ export default function Register({ accentColor, navigation }) {
             Not a registered member?{''}
 
           </Text>
-          <Button mode="text" color={accentColor}>
+          <Button 
+          onPress={() => (navigation.navigate('Register'))}
+          mode="text" color={accentColor}>
             Register
           </Button>
         </View>

@@ -12,19 +12,19 @@ import styles from './Styles';
 import {useState} from 'react/cjs/react.production.min';
 import {Switch} from 'react-native-paper';
 import {Subheading} from 'react-native-paper';
-import { NavigationContainer, useLinkProps, route } from '@react-navigation/native';
 
 export default function NewListing({accentColor, navigation, route}) {
   //dropdown list variables
   const [expanded, setExpanded] = React.useState(true);
-  const handlePress = () => setExpanded(!expanded);  
+  const handlePress = () => setExpanded(!expanded);
+
   //switch  variables
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);
     console.log(isSwitchOn);
   };
-const {isEditing}=route.params;
+  const {isEditing} = route.params;
   return (
     <>
       <View
@@ -37,7 +37,7 @@ const {isEditing}=route.params;
         }}>
         <Image source={logo} style={styles.logo} />
 
-        <Text style={styles.textHeading}>Create a listing</Text>
+        <Text style={styles.textHeading}>Create an offer</Text>
 
         {/*textinputs*/}
         <ScrollView
@@ -48,58 +48,34 @@ const {isEditing}=route.params;
             justifyContent: 'center',
           }}
           style={{width: '100%'}}>
-          <TextInput
-            style={styles.textBox}
-            label="Title"
-            placeholder="Tell us what you are disposing"
-            underlineColor={accentColor}
-            activeUnderlineColor={accentColor}
-          />
-         
-          <List.Accordion
-            title="Type"
-            expanded={expanded}
-            onPress={handlePress}                                    
-            style={styles.dropList}>
-            <List.Item title="Plastic" />
-            <List.Item title="Glass" />
-          </List.Accordion>
-
-          <View style={styles.loginRow}>
-            <Text style={styles.loginText}>Units &nbsp;</Text>
-            <Switch
-              value={isSwitchOn}
-              onValueChange={onToggleSwitch}
-              color={accentColor}
-            />
-            <Text style={styles.loginText}>&nbsp; Weight</Text>
-          </View>
+          <Subheading>Title</Subheading>
+          <Text>'Waste item title here'</Text>
+          <Subheading>Weight</Subheading>
+          <Text>'weight here'</Text>
+          <Subheading>Highest Bid Amount</Subheading>
+          <Text>'Highest bid amount here'</Text>
 
           <TextInput
             style={styles.textBox}
-            label="Quantity"
-            placeholder="Enter Waste Quantity"
+            label="Amount"
+            placeholder="Enter your bid amount"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
-          />
-          <Text style={{marginTop: 20}}>You will earn</Text>
-          <Subheading>AMOUNT</Subheading>
+          />         
           
-          {(isEditing==true) ?           
-           <Button
+          {(isEditing==true) ? <Button
             mode="contained"
-            onPress={() => navigation.navigate("SellerMode")}
+            onPress={() => navigation.navigate("CollectorMode")}
             style={styles.regBtn}
             color={accentColor}>
-            Edit Listing
+            Edit Your Bid
           </Button> : <Button
             mode="contained"
-            onPress={() => navigation.navigate("SellerMode")}
+            onPress={() => navigation.navigate("CollectorMode")}
             style={styles.regBtn}
             color={accentColor}>
-            Create Listing
+            Bid Now
           </Button>}
-          
         </ScrollView>
       </View>
     </>
