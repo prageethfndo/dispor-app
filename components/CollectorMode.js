@@ -44,8 +44,9 @@ export default function CollectorMode({ accentColor, navigation }) {
                 {bidedItems.map((card) => {
                     return (
                         <ItemCardCollector key={card.id} title={card.title}
-                            amount={card.amount + card.unit} price={card.price} status={card.status}
-                            maxBid={'5963'}
+                            amount={card.amount} price={card.price} status={card.status}
+                            maxBid={card.maxBid}
+                            unit={card.unit}
                             navigation={navigation}
                             newBid={false} />)
                 }

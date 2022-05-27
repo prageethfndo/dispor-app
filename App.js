@@ -53,7 +53,8 @@ const App: () => Node = () => {
           {props => <Listings {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='Bidding' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='Bidding' options={{title:"Bidding", headerShown:true , headerStyle:{
+         backgroundColor:accentColor}, headerTitleStyle:{color:"#fff"}}}>
           {props => <Bidding {...props} accentColor={accentColor} />}
         </Stack.Screen>        
 
