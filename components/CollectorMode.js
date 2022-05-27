@@ -6,8 +6,18 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCardCollector from './ItemCardCollector';
+import { useEffect, useState } from 'react';
+import ResponseData from '../temp/ResponseData'
 export default function CollectorMode({ accentColor, navigation }) {
+    const [bidedItems, setBidedItems] = useState([])
+
+    useEffect(() => {
+        setBidedItems(ResponseData)
+
+    }, [])
+
     return (
+
         <View style={Styles.viewContainer}>
             <Profile username={'Kumara'} role={'collector'} />
 
@@ -30,31 +40,18 @@ export default function CollectorMode({ accentColor, navigation }) {
                     paddingBottom: 100
                 }}
                 style={{ width: '100%' }}>
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}                    
-                    maxBid={'5963'}
-                    navigation = {navigation} 
-                    newBid={false}/>
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation}
-                    newBid={false}/>
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation}
-                    newBid={false}/>
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation}
-                    newBid={false}/>
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation}
-                    newBid={false}/>
+
+                {bidedItems.map((card) => {
+                    return (
+                        <ItemCardCollector key={card.id} title={card.title}
+                            amount={card.amount + card.unit} price={card.price} status={card.status}
+                            maxBid={'5963'}
+                            navigation={navigation}
+                            newBid={false} />)
+                }
+                )}
+
+
 
             </ScrollView>
 
