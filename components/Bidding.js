@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry,ToastAndroid } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import logo from '../assests/img/logo.png';
@@ -14,18 +14,16 @@ import { Switch } from 'react-native-paper';
 import { Subheading, Avatar } from 'react-native-paper';
 import AppBar from './AppBar';
 import PageHeader from './PageHeader';
+import Toast from './Toast';
 
 
 
-
-
-
-
-export default function NewListing({ accentColor, navigation, route }) {
+export default function NewListing({ accentColor, navigation, route, showToast }) {
 
 
   //dropdown list variables
 
+ 
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
   const [ItemTitle, setItemTitle] = useState("")
@@ -56,15 +54,35 @@ export default function NewListing({ accentColor, navigation, route }) {
   //const { itemData } = route.params;
 
   useEffect(() => {
+
+    setItemTitle(title)
+    setItemAmount(amount)
+    setItemMaxBid(maxBid)
+    setItemUnit(unit)
+    setBid(currentBid)
     if (isEditing === true) {
-      setItemTitle(title)
-      setItemAmount(amount)
-      setItemMaxBid(maxBid)
-      setItemUnit(unit)
       setBid(currentBid)
     }
+    else {
+      setBid(maxBid + 1)
+    }
+
+
+
   }, [])
-  console.log(title)
+
+  //function for save edit data
+  const handleSaveEdit = () => {
+    
+    navigation.navigate("CollectorMode")
+    showToast("Your changes has been saved")
+  }
+
+
+  const handleNewBid=()=>{
+    navigation.navigate("CollectorMode")
+    showToast("Your bid has been saved")
+  }
   return (
     <>
       <View
@@ -73,15 +91,15 @@ export default function NewListing({ accentColor, navigation, route }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          
-          height:"100%"
-        
+
+          height: "100%"
+
         }}>
 
         <PageHeader heading={" Your Bid"} subheading={"Put maximum bid amount you can to win"}
-          height={"40%"} icon={"briefcase-upload"}/>
+          height={"40%"} icon={"briefcase-upload"} />
 
-
+       
 
         {/*textinputs*/}
         <ScrollView
@@ -91,28 +109,28 @@ export default function NewListing({ accentColor, navigation, route }) {
             alignItems: 'flex-start',
             justifyContent: 'center',
             margin: "5%",
-            padding:'5%',
-            
-           
+            padding: '5%',
+
+
             backgroundColor: '#ededed',
-            borderRadius:30,
-           
-            
+            borderRadius: 30,
+
+
 
           }}
-         
-         >
+
+        >
           <Subheading style={{ fontSize: 20 }}>{ItemTitle}</Subheading>
 
           <Subheading style={{ fontSize: 20, fontWeight: '800' }}>{ItemAmount} {ItemUnit}</Subheading>
 
-          <Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid 
-        </Subheading>
-         
-                
-          <Subheading style={{ color: accentColor, fontSize: 25, marginTop: 10, }}> 
-          {ItemMaxBid}LKR  <Avatar.Icon icon={"arrow-up-bold"} color={accentColor} 
-          size={40} style={{ backgroundColor: 'transparent' }} />
+          <Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid
+          </Subheading>
+
+
+          <Subheading style={{ color: accentColor, fontSize: 25, marginTop: 10, }}>
+            {ItemMaxBid}LKR  <Avatar.Icon icon={"arrow-up-bold"} color={accentColor}
+              size={40} style={{ backgroundColor: 'transparent' }} />
           </Subheading>
 
 
@@ -134,20 +152,23 @@ export default function NewListing({ accentColor, navigation, route }) {
           }}>
             {(isEditing == true) ? <Button
               mode="contained"
-              onPress={() => navigation.navigate("CollectorMode")}
+              onPress={() => handleSaveEdit()}
               style={styles.bidBtn}
 
               color={accentColor}>
               Edit Your Bid
             </Button> : <Button
               mode="contained"
-              onPress={() => navigation.navigate("CollectorMode")}
+              onPress={() => handleNewBid()}
               style={styles.bidBtn}
               color={accentColor}>
               Bid Now
             </Button>}
           </View>
+          
+       
         </ScrollView>
+        
       </View>
     </>
   );

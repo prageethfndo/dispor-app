@@ -7,7 +7,17 @@ import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
 export default function ItemCardCollector({ title, amount, price, status, maxBid, navigation, newBid, unit }) {
-    const _handleOnClick = () => { navigation.navigate("Bidding", { isEditing: false }) };
+    const _handleOnClick = () => {
+        navigation.navigate("Bidding", {
+            isEditing: false, 
+            title: title,
+            amount: amount,
+            price: price,
+            unit: unit,
+            status: status,
+            maxBid: maxBid
+        })
+    };
     const _handleOnClick2 = () => {
         navigation.navigate("Bidding", {
             isEditing: true,
@@ -48,8 +58,10 @@ export default function ItemCardCollector({ title, amount, price, status, maxBid
             <Card.Actions style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-end', width: '100%', justifyContent: 'flex-end' }}>
 
                 {(newBid == true) ? <Button color='#48a7fa' icon={'bitcoin'}
-                    onPress={_handleOnClick}>Bid Now</Button> : <View style={{ display: 'flex', flexDirection: "row", justifyContent: "flex-end", alignItems: "center", width: "100%" }}><Button color='#48a7fa' icon={'playlist-edit'}
-                        onPress={_handleOnClick2}>Edit</Button><Button color='#fa4848' icon={'cancel'} >Cancel</Button></View>}
+                    onPress={_handleOnClick}>Bid Now</Button> :
+                    <View style={{ display: 'flex', flexDirection: "row", justifyContent: "flex-end", alignItems: "center", width: "100%" }}>
+                        <Button color='#48a7fa' icon={'playlist-edit'}
+                            onPress={_handleOnClick2}>Edit</Button><Button color='#fa4848' icon={'cancel'} >Cancel</Button></View>}
 
 
             </Card.Actions>

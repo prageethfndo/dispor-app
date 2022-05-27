@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry,ToastAndroid } from 'react-native';
 
 import { name as appName } from './app.json';
 
@@ -15,52 +15,73 @@ import NewListing from './components/NewListing.js';
 import Bidding from './components/Bidding.js';
 import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useState } from 'react';
+import Toast from './components/Toast';
+
+
 
 
 
 const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
+
+  const showToast = (text) => {
+    ToastAndroid.show( text , ToastAndroid.SHORT);
+};
   //set the global accent color for all components
   const accentColor = '#17AF82';
 
   //change
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='Login' options={{title:"", headerShown:false}}>
+    <><NavigationContainer>
+        <Stack.Navigator>
+        <Stack.Screen name='Login' options={{ title: "", headerShown: false }}>
           {props => <Login {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='Register' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='Register' options={{ title: "", headerShown: false }}>
           {props => <Register {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='SellerMode' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='SellerMode' options={{ title: "", headerShown: false }}>
           {props => <SellerMode {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
 
-        <Stack.Screen name='CollectorMode' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='CollectorMode' options={{ title: "", headerShown: false }}>
           {props => <CollectorMode {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='NewListing' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='NewListing' options={{ title: "", headerShown: false }}>
           {props => <NewListing {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='Listings' options={{title:"", headerShown:false}}>
+        <Stack.Screen name='Listings' options={{
+          title: "All Items", headerShown: true, headerStyle: {
+            backgroundColor: accentColor
+          }, headerTitleStyle: { color: "#fff" },
+          headerTintColor: "#fff", headerShadowVisible: false
+        }}>
           {props => <Listings {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='Bidding' options={{title:"Bidding", headerShown:true , headerStyle:{ 
-         backgroundColor:accentColor}, headerTitleStyle:{color:"#fff"}, headerTintColor: '#fff', headerShadowVisible:false}}>
-          {props => <Bidding {...props} accentColor={accentColor} />}
-        </Stack.Screen>        
+        <Stack.Screen name='Bidding' options={{
+          title: "Bidding", headerShown: true, headerStyle: {
+            backgroundColor: accentColor
+          }, headerTitleStyle: { color: "#fff" },
+          headerTintColor: '#fff', headerShadowVisible: false
+        }}>
+          {props => <Bidding {...props} accentColor={accentColor} showToast={showToast} />}
+        </Stack.Screen>
 
       </Stack.Navigator>
       {/** <SellerMode accentColor={accentColor} /> */}
+     
     </NavigationContainer>
+   
+    </>
+
   );
 };
 

@@ -7,72 +7,44 @@ import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCardCollector from './ItemCardCollector';
 import ResponseData from '../temp/ResponseData';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
-export default function Listings({navigation}) {
+export default function Listings({ navigation }) {
     const [itemList, setItemList] = useState([])
-    useEffect(()=>{
-        
+    useEffect(() => {
+        setItemList(ResponseData)
     })
     return (
         <View
-            style={Styles.viewContainer} style={{paddingBottom:'15%'}}>
-            <AppBar title={'All Listings '} backAction={() => { console.log('pressed') }} />
+            style={Styles.viewContainer} style={{ paddingBottom: '15%' }}>
+        
             <ScrollView contentContainerStyle={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-            
+
             }} style={{ width: '100%' }}>
 
 
-                {}
+                {itemList.map((item) => {
+                    return (
+                        <ItemCardCollector key={item.id} title={item.title}
+                            amount={item.amount + item.unit} price={item.price} 
+                            maxBid={item.maxBid}
+                            status={item.status}
+                            navigation={navigation}
+                            newBid={true}
+                        />)
 
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'}  
-                    navigation = {navigation} 
-                    newBid={true}             
-                    />
-                    
+                })}
 
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation} 
-                    newBid={true}  
-                    />
 
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation} 
-                    newBid={true}  
-                    />
 
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation} 
-                    newBid={true}  
-                    />
 
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation} 
-                    newBid={true}  
-                    />
-
-                <ItemCardCollector title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} 
-                    navigation = {navigation} 
-                    newBid={true}  
-                    />
+            
 
             </ScrollView>
         </View>

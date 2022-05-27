@@ -4,7 +4,7 @@ export default ResponseData = [
         title: "50 bottels for sale in pannipitiya",
         amount: 50,
         unit: "KG",
-        price: "5000",
+        price: "54656",
         status: "active", maxBid: "8000"
     },
     {
@@ -12,8 +12,8 @@ export default ResponseData = [
         title: "50 bottels for sale in pannipitiya",
         amount: 50,
         unit: "KG",
-        price: "5000",
-        status: "active", maxBid: "8000"
+        price: "5465",
+        status: "active", maxBid: "5000"
     }
     ,
     {
@@ -21,8 +21,8 @@ export default ResponseData = [
         title: "50 bottels for sale in pannipitiya",
         amount: 50,
         unit: "KG",
-        price: "5000",
-        status: "active", maxBid: "8000"
+        price: "4532000",
+        status: "active", maxBid: "3000"
     }
     ,
     {
@@ -30,8 +30,8 @@ export default ResponseData = [
         title: "50 bottels for sale in pannipitiya",
         amount: 50,
         unit: "KG",
-        price: "5000",
-        status: "active", maxBid: "8000"
+        price: "51000",
+        status: "active", maxBid: "56000"
     }
 
     
