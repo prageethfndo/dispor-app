@@ -6,8 +6,16 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCardCollector from './ItemCardCollector';
+import ResponseData from '../temp/ResponseData';
+import { useState,useEffect } from 'react';
+
+
 
 export default function Listings({navigation}) {
+    const [itemList, setItemList] = useState([])
+    useEffect(()=>{
+        
+    })
     return (
         <View
             style={Styles.viewContainer} style={{paddingBottom:'15%'}}>
@@ -19,6 +27,9 @@ export default function Listings({navigation}) {
                 justifyContent: 'center',
             
             }} style={{ width: '100%' }}>
+
+
+                {}
 
                 <ItemCardCollector title={'50 bottles for in Pannipitiya'}
                     amount={'50 KG'} price={'5000'} status={'Active'}
