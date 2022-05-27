@@ -11,7 +11,10 @@ import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import styles from './Styles';
 import { useState, useEffect } from 'react';
 import { Switch } from 'react-native-paper';
-import { Subheading } from 'react-native-paper';
+import { Subheading, Avatar } from 'react-native-paper';
+import AppBar from './AppBar';
+import PageHeader from './PageHeader';
+
 
 
 
@@ -70,8 +73,13 @@ export default function NewListing({ accentColor, navigation, route }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingBottom: '15%',
+          
+          height:"100%"
+        
         }}>
+
+        <PageHeader heading={" Your Bid"} subheading={"Put maximum bid amount you can to win"}
+          height={"40%"} icon={"briefcase-upload"}/>
 
 
 
@@ -82,21 +90,34 @@ export default function NewListing({ accentColor, navigation, route }) {
             flexDirection: 'column',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            padding: 15,
-            height: '100%',
+            margin: "5%",
+            padding:'5%',
+            
+           
+            backgroundColor: '#ededed',
+            borderRadius:30,
+           
+            
 
           }}
-          style={{ width: '100%' }}>
+         
+         >
           <Subheading style={{ fontSize: 20 }}>{ItemTitle}</Subheading>
 
           <Subheading style={{ fontSize: 20, fontWeight: '800' }}>{ItemAmount} {ItemUnit}</Subheading>
 
-          <Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid</Subheading>
-          <Subheading style={{ color: accentColor, fontSize: 25, marginTop: 10 }}>{ItemMaxBid}LKR</Subheading>
+          <Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid 
+        </Subheading>
+         
+                
+          <Subheading style={{ color: accentColor, fontSize: 25, marginTop: 10, }}> 
+          {ItemMaxBid}LKR  <Avatar.Icon icon={"arrow-up-bold"} color={accentColor} 
+          size={40} style={{ backgroundColor: 'transparent' }} />
+          </Subheading>
 
 
           <TextInput
-            style={styles.textBox} style={{ width: '100%', marginTop:'10%' }}
+            style={styles.textBox} style={{ width: '100%', marginTop: '10%' }}
             label="Amount"
             placeholder="Enter your bid amount"
             underlineColor={accentColor}
@@ -114,14 +135,14 @@ export default function NewListing({ accentColor, navigation, route }) {
             {(isEditing == true) ? <Button
               mode="contained"
               onPress={() => navigation.navigate("CollectorMode")}
-              style={styles.regBtn}
+              style={styles.bidBtn}
 
               color={accentColor}>
               Edit Your Bid
             </Button> : <Button
               mode="contained"
               onPress={() => navigation.navigate("CollectorMode")}
-              style={styles.regBtn}
+              style={styles.bidBtn}
               color={accentColor}>
               Bid Now
             </Button>}

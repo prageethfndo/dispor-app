@@ -173,5 +173,18 @@ export default StyleSheet.create({
     newBtn:{
       borderRadius:20,
       shadowColor:'transparent'
+    },
+
+    bidBtn: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: 50,
+      width: '90%',
+      marginTop: 15,
+      borderRadius:30,
+      shadowColor:'transparent'
+      
     }
 });
