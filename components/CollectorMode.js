@@ -6,8 +6,10 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCardCollector from './ItemCardCollector';
+
 import { useEffect, useState } from 'react';
 import ResponseData from '../temp/ResponseData'
+
 export default function CollectorMode({ accentColor, navigation }) {
     const [bidedItems, setBidedItems] = useState([])
 
@@ -55,7 +57,7 @@ export default function CollectorMode({ accentColor, navigation }) {
 
 
             </ScrollView>
-
+          
         </View>
     )
 }

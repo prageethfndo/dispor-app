@@ -64,6 +64,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: '30%',
+   
   },
   appBar: {
     width: "100%",
@@ -144,7 +145,7 @@ export default StyleSheet.create({
     marginTop: 2,
     marginBottom:2,
     padding: 7,
-    backgroundColor: '#f2f3f5',
+    backgroundColor: '#ededed',
     borderRadius:15,
     shadowColor:'transparent'
   },

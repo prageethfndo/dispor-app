@@ -65,7 +65,7 @@ export default function ItemCardCollector({ title, amount, price, status, maxBid
 
 
             </Card.Actions>
-            <Divider style={{ backgroundColor: '#a6a6a6' }} />
+          
 
 
         </Card>

@@ -18,7 +18,7 @@ export default function Listings({ navigation }) {
     })
     return (
         <View
-            style={Styles.viewContainer} style={{ paddingBottom: '15%' }}>
+            style={Styles.viewContainer} style={{ paddingBottom: '2%' }}>
         
             <ScrollView contentContainerStyle={{
                 display: 'flex',
