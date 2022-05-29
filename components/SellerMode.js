@@ -13,9 +13,7 @@ import TabBar from './TabBar';
 
 export default function SellerMode({ accentColor, navigation }) {
 
-    const editItem = (isEditing) => {
-        navigation.navigate('NewListing', {isEditing:isEditing})                
-    }
+    
 
     const [itemList, setItemList] = useState([])
 
@@ -58,7 +56,7 @@ export default function SellerMode({ accentColor, navigation }) {
                         return (
                             <ItemCard key={item.id} title={item.title}
                             amount={item.amount + item.unit} price={item.price} status={item.status}
-                            maxBid={item.maxBid} editCard={editItem} />
+                            maxBid={item.maxBid} navigation={navigation} unit={item.unit}/>
                         )
                     })}
       
