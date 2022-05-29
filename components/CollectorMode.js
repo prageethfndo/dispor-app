@@ -9,6 +9,8 @@ import ItemCardCollector from './ItemCardCollector';
 
 import { useEffect, useState } from 'react';
 import ResponseData from '../temp/ResponseData'
+import { transform } from '@babel/core';
+import TabBar from './TabBar';
 
 export default function CollectorMode({ accentColor, navigation }) {
     const [bidedItems, setBidedItems] = useState([])
@@ -20,8 +22,15 @@ export default function CollectorMode({ accentColor, navigation }) {
 
     return (
 
-        <View style={Styles.viewContainer}>
-            <Profile username={'Kumara'} role={'collector'} />
+        <View style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+            height: '100%'
+        }} >
+            <Profile username={'Kumara'} role={'collector'} toggle={true} />
 
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>
@@ -39,9 +48,10 @@ export default function CollectorMode({ accentColor, navigation }) {
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    paddingBottom: 100
+                    minHeight: '100%'
+
                 }}
-                style={{ width: '100%' }}>
+                style={{ width: '100%', height: '90%' }}>
 
                 {bidedItems.map((card) => {
                     return (
@@ -57,7 +67,8 @@ export default function CollectorMode({ accentColor, navigation }) {
 
 
             </ScrollView>
-          
+          <TabBar  navigation={navigation} role={'collector'}/>
+
         </View>
     )
 }

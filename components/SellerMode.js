@@ -7,6 +7,8 @@ import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCard from './ItemCard';
 import { useState } from 'react/cjs/react.production.min';
+import TabBar from './TabBar';
+
 export default function SellerMode({ accentColor, navigation }) {
 
     const editItem = (isEditing) => {
@@ -15,7 +17,14 @@ export default function SellerMode({ accentColor, navigation }) {
 
 
     return (
-        <View style={Styles.viewContainer}>
+        <View  style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+            height: '100%'
+        }}>
             <Profile username={'Kumara'} role={'seller'} />
 
 
@@ -62,6 +71,7 @@ export default function SellerMode({ accentColor, navigation }) {
 
 
             </ScrollView>
+            <TabBar  navigation={navigation} role={'seller'}/>
 
         </View>
     )

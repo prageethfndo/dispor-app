@@ -80,7 +80,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor:accentColor
+    
   },
   profileText: {
     color: '#fff',
@@ -186,6 +186,16 @@ export default StyleSheet.create({
       marginTop: 15,
       borderRadius:30,
       shadowColor:'transparent'
+      
+    },
+    TabBar:{
+      display: 'flex', 
+      alignItems:'center',
+      justifyContent:'space-around',
+      flexDirection:'row',
+      backgroundColor: accentColor,
+      width: '100%', 
+      height: "7%",
       
     }
 });
