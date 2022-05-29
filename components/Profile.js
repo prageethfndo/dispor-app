@@ -1,24 +1,38 @@
 import * as React from 'react';
 import styles from './Styles';
-import { DataTable, Subheading, Appbar, Text, Avatar, Button,IconButton } from 'react-native-paper';
-import { StyleSheet, View, Image, ScrollView,  } from 'react-native';
-import { useState, useEffect } from 'react';
+import { DataTable, Subheading, Appbar, Text, Avatar, Button, IconButton } from 'react-native-paper';
+import { StyleSheet, View, Image, ScrollView, Animated } from 'react-native';
+import { useState, useEffect, useRef } from 'react';
 import user from '../assests/img/user.png';
 import StatsCard from './StatsCard';
 
 export default function Profile({ username, role, toggle }) {
 
-    const [isMinimized, setIsMinimized] = useState(true) 
+    const [isMinimized, setIsMinimized] = useState(true)
 
-    useEffect(()=>{
+    useEffect(() => {
         setIsMinimized(toggle)
-    },[toggle])
+    }, [toggle])
 
-  
+    const fadeAnim = useRef(new Animated.Value(-0)).current  // Initial value for opacity: 0
+
+    useEffect(() => {
+        Animated.timing(
+            fadeAnim,
+            {
+                toValue: 1,
+                duration: 300,
+                useNativeDriver: true
+            }
+        ).start();
+    }, [toggle])
 
     return (
-        <View style={{ backgroundColor: '#17AF82', padding: 5, borderBottomLeftRadius: 30, 
-        borderBottomRightRadius: 30, width:"100%" }}>
+
+        <View style={{
+            backgroundColor: '#17AF82', padding: 5, borderBottomLeftRadius: 30,
+            borderBottomRightRadius: 30, width: "100%"
+        }}>
             <View style={styles.profileBar}>
 
 
@@ -33,21 +47,24 @@ export default function Profile({ username, role, toggle }) {
 
 
             </View>
+            <Animated.View                 // Special animatable View
+                style={{ scaleY: fadeAnim }}>
 
-            {(isMinimized===true)?(role.toLowerCase()) === 'collector' && <View style={styles.cardRow}>
-                <StatsCard title={'Spent'} value={'574545 '} unit={'LKR'} type={'earnings'} />
-                <StatsCard title={'Bought'} value={'500 '} unit={'KG'} />
-            </View> ||
-                <View style={styles.cardRow}>
-                    <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'} />
-                    <StatsCard title={'Sold'} value={'500 '} unit={'KG'} />
-                </View> : null
-            }
-            {/** toggle cards. Change the button icon according to the state*/}
-            <IconButton  icon={(isMinimized)? 'chevron-double-up':'chevron-double-down'}  
-            onPress={()=>{(isMinimized)? setIsMinimized(false): setIsMinimized(true)}} 
-            color={'#fff'} size={30} style={{width:'100%'}}/>
-            
+                {(isMinimized === true) ? (role.toLowerCase()) === 'collector' && <View style={styles.cardRow}>
+                    <StatsCard title={'Spent'} value={'574545 '} unit={'LKR'} type={'earnings'} />
+                    <StatsCard title={'Bought'} value={'500 '} unit={'KG'} />
+                </View> ||
+                    <View style={styles.cardRow}>
+                        <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'} />
+                        <StatsCard title={'Sold'} value={'500 '} unit={'KG'} />
+                    </View> : null
+                }
+                {/** toggle cards. Change the button icon according to the state*/}
+                <IconButton icon={(isMinimized) ? 'chevron-double-up' : 'chevron-double-down'}
+                    onPress={() => { (isMinimized) ? setIsMinimized(false) : setIsMinimized(true) }}
+                    color={'#fff'} size={30} style={{ width: '100%' }} />
+            </Animated.View>
         </View>
+
     )
 }
