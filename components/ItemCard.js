@@ -52,7 +52,7 @@ export default function ItemCard({ title, amount, price, status, maxBid, navigat
                 <Button color='#48a7fa' icon={'playlist-edit'}
                     onPress={() => editItem()}>Edit</Button>
             </Card.Actions>
-            <Divider style={{ backgroundColor: '#a6a6a6' }} />
+         
         </Card>
     )
 }
