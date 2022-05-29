@@ -5,8 +5,10 @@ import AppBar from './AppBar';
 import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
+
 import ItemCard from './ItemCard';
-import { useState } from 'react/cjs/react.production.min';
+import { useEffect, useState } from 'react';
+import ResponseData from '../temp/ResponseData';
 import TabBar from './TabBar';
 
 export default function SellerMode({ accentColor, navigation }) {
@@ -15,6 +17,11 @@ export default function SellerMode({ accentColor, navigation }) {
         navigation.navigate('NewListing', {isEditing:isEditing})                
     }
 
+    const [itemList, setItemList] = useState([])
+
+    useEffect(()=>{
+        setItemList(ResponseData)
+    },[])
 
     return (
         <View  style={{
@@ -46,26 +53,17 @@ export default function SellerMode({ accentColor, navigation }) {
                     paddingBottom: 100
                 }}
                 style={{ width: '100%' }}>
-                <ItemCard title={'5 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} editCard={editItem} />
 
-                <ItemCard title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} editCard={editItem}/>
+                    {itemList.map((item)=>{
+                        return (
+                            <ItemCard key={item.id} title={item.title}
+                            amount={item.amount + item.unit} price={item.price} status={item.status}
+                            maxBid={item.maxBid} editCard={editItem} />
+                        )
+                    })}
+      
 
-                <ItemCard title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} editCard={editItem} />
-
-                <ItemCard title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} editCard={editItem} />
-
-                <ItemCard title={'50 bottles for in Pannipitiya'}
-                    amount={'50 KG'} price={'5000'} status={'Active'}
-                    maxBid={'5963'} editCard={editItem} />
-
+               
 
 
 
