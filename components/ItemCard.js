@@ -6,10 +6,11 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
-export default function ItemCard({ title, amount, price, status, maxBid, navigation, editCard, isEditing, unit }) { 
+export default function ItemCard({ id, title, amount, price, status, maxBid, navigation, editCard, isEditing, unit }) { 
 
     const editItem = () => {
         navigation.navigate('NewListing', {
+            id:id,
             isEditing:true, 
             title:title,
             amount:amount,

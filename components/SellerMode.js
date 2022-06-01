@@ -54,7 +54,7 @@ export default function SellerMode({ accentColor, navigation }) {
 
                     {itemList.map((item)=>{
                         return (
-                            <ItemCard key={item.id} title={item.title}
+                            <ItemCard key={item.id} id={item.id} title={item.title}
                             amount={item.amount + item.unit} price={item.price} status={item.status}
                             maxBid={item.maxBid} navigation={navigation} unit={item.unit}/>
                         )

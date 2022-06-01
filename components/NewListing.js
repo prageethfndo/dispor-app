@@ -25,11 +25,13 @@ export default function NewListing({ accentColor, navigation, route }) {
     console.log(isSwitchOn);
   };
   const { isEditing,
+    id,
     title,
     amount,
     price,
     status,
     maxBid, unit } = route.params;
+    console.log(id)
   return (
     <>
       <View
@@ -38,11 +40,10 @@ export default function NewListing({ accentColor, navigation, route }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          paddingBottom: '15%',
+         
         }}>
-        <Image source={logo} style={styles.logo} />
-
-        <Text style={styles.textHeading}>Create a listing</Text>
+        
+        <Text style={styles.textHeading}> {(isEditing)? 'Edit your listing' : 'Create a new Listing'}</Text>
 
         {/*textinputs*/}
         <ScrollView

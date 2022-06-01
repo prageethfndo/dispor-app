@@ -53,7 +53,12 @@ const App: () => Node = () => {
           {props => <CollectorMode {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
-        <Stack.Screen name='NewListing' options={{ title: "", headerShown: false }}>
+        <Stack.Screen name='NewListing' options={{
+          title: "Listing", headerShown: true, headerStyle: {
+            backgroundColor: accentColor
+          }, headerTitleStyle: { color: "#fff" },
+          headerTintColor: "#fff", headerShadowVisible: false
+        }}>
           {props => <NewListing {...props} accentColor={accentColor} />}
         </Stack.Screen>
 
