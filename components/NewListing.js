@@ -9,17 +9,25 @@ import type { Node } from 'react';
 import { List } from 'react-native-paper';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import styles from './Styles';
-import { useState } from 'react/cjs/react.production.min';
+import { useState } from 'react';
 import { Switch } from 'react-native-paper';
 import { Subheading } from 'react-native-paper';
 import { NavigationContainer, useLinkProps, route } from '@react-navigation/native';
 
 export default function NewListing({ accentColor, navigation, route }) {
   //dropdown list variables
-  const [expanded, setExpanded] = React.useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [type,setType] = useState('Plastic')
   const handlePress = () => setExpanded(!expanded);
+  const [typeList, setTypeList] =useState(['Plastic', 'Metal', 'Glass'])
+
+  const handleUnitOptionSelection = (type) => {
+    console.log(type.item)
+    setType(type.item)
+    setExpanded(false)
+  }
   //switch  variables
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const [isSwitchOn, setIsSwitchOn] =useState(false);
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);
     console.log(isSwitchOn);
@@ -40,6 +48,7 @@ export default function NewListing({ accentColor, navigation, route }) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
+          width:"100%"
          
         }}>
         
@@ -52,6 +61,7 @@ export default function NewListing({ accentColor, navigation, route }) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+           
           }}
           style={{ width: '100%' }}>
           <TextInput
@@ -63,14 +73,24 @@ export default function NewListing({ accentColor, navigation, route }) {
             value={title}
           />
 
-          <List.Accordion
-            title="Type"
-            expanded={expanded}
-            onPress={handlePress}
-            style={styles.dropList}>
-            <List.Item title="Plastic" />
-            <List.Item title="Glass" />
-          </List.Accordion>
+          <List.Section style={{width:'100%', }}>
+            <List.Accordion
+              title={type}
+              expanded={expanded}
+              onPress={handlePress}
+              style={styles.dropList}>
+                
+
+                
+                {typeList.map((item)=>{
+                  return(
+                  <List.Item title={item} key={Math.random()} 
+                  onPress={()=>{handleUnitOptionSelection({item})}} />)
+                })}
+             
+            
+            </List.Accordion>
+          </List.Section>
 
           <View style={styles.loginRow}>
             <Text style={styles.loginText}>Units &nbsp;</Text>

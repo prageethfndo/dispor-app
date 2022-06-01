@@ -49,9 +49,12 @@ export default StyleSheet.create({
     marginTop: 30
   },
   dropList: {
-    width: 350,
+    width: "90%",
     marginTop: 20,
     backgroundColor: '#dddddd',
+    marginLeft:"5%",
+    marginRight:"5%"
+    
   },
   dataTable: {
     width: '90%',
