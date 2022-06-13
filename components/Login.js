@@ -10,7 +10,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import styles from './Styles'
 import { useState } from 'react';
 
-export default function Register({ accentColor, navigation }) {
+export default function Login({ accentColor, navigation, showToast }) {
 
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -18,6 +18,9 @@ export default function Register({ accentColor, navigation }) {
 
   const [collectorMode, setCollectorMode] = useState("black")
   const [sellerMode, setSellerMode] = useState("black")
+
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
 
 
   const onToggleSwitch = () => {
@@ -36,11 +39,25 @@ export default function Register({ accentColor, navigation }) {
 
   };
 
-  const LoginRouter=()=>{
+  const LoginRouter = () => {
     console.log(mode)
-    if(mode==='collector')
-    {navigation.navigate('CollectorMode')}
-    else if (mode==='seller'){navigation.navigate('SellerMode')}
+    if (mode === 'collector') { navigation.navigate('CollectorMode') }
+    else if (mode === 'seller') { navigation.navigate('SellerMode') }
+  }
+
+
+  const handleLogin = () => {
+    //
+    if(username!="" && password !="")
+    {
+      LoginRouter()
+    }
+
+    else
+    {
+      showToast("Invalid inputs. Please try again")
+    }
+    console.log(username+password)
   }
 
 
@@ -73,6 +90,8 @@ export default function Register({ accentColor, navigation }) {
           placeholder="Enter Your Email"
           underlineColor={accentColor}
           activeUnderlineColor={accentColor}
+          onChangeText={(text) => { setUsername(text) }}
+          value={username}
         />
         <TextInput
           style={styles.textBox}
@@ -81,10 +100,12 @@ export default function Register({ accentColor, navigation }) {
           placeholder="Enter Password"
           underlineColor={'transparent'}
           activeUnderlineColor={accentColor}
+          onChangeText={(text) => { setPassword(text) }}
+          value={password}
         />
         <Button
           mode="contained"
-          onPress={() => LoginRouter()}
+          onPress={() => handleLogin()}
           style={styles.regBtn} color={accentColor}>
           LOGIN
         </Button>
@@ -95,9 +116,9 @@ export default function Register({ accentColor, navigation }) {
             Not a registered member?{''}
 
           </Text>
-          <Button 
-          onPress={() => (navigation.navigate('Register'))}
-          mode="text" color={accentColor}>
+          <Button
+            onPress={() => (navigation.navigate('Register'))}
+            mode="text" color={accentColor}>
             Register
           </Button>
         </View>

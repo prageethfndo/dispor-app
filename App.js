@@ -37,7 +37,7 @@ const App: () => Node = () => {
     <><NavigationContainer>
         <Stack.Navigator>
         <Stack.Screen name='Login' options={{ title: "", headerShown: false }}>
-          {props => <Login {...props} accentColor={accentColor} />}
+          {props => <Login {...props} accentColor={accentColor} showToast={showToast}/>}
         </Stack.Screen>
 
         <Stack.Screen name='Register' options={{ title: "", headerShown: false }}>
