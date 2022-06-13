@@ -13,16 +13,24 @@ import TabBar from './TabBar';
 
 export default function SellerMode({ accentColor, navigation }) {
 
-    
+
 
     const [itemList, setItemList] = useState([])
 
-    useEffect(()=>{
+    
+
+    useEffect(() => {
         setItemList(ResponseData)
-    },[])
+        const endpoint = "https://jsonkeeper.com/b/ZZHT";
+        fetch(endpoint)
+            .then((response) => response.json())
+            .then((json) => setItemList(json))
+            .catch((err) => { console.log(err) })
+
+    }, [])
 
     return (
-        <View  style={{
+        <View style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -30,12 +38,12 @@ export default function SellerMode({ accentColor, navigation }) {
 
             height: '100%'
         }}>
-            <Profile username={'Kumara'} role={'seller'} toggle={true}/>
+            <Profile username={'Kumara'} role={'seller'} toggle={true} />
 
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>
                 <Text style={{ marginTop: 20, fontSize: 20, color: '#000', marginBottom: 10 }} >Your items on sale</Text>
-                <Button icon="plus" mode="contained" onPress={() => navigation.navigate('NewListing', {isEditing:false})} color={accentColor} style={Styles.newBtn}>
+                <Button icon="plus" mode="contained" onPress={() => navigation.navigate('NewListing', { isEditing: false })} color={accentColor} style={Styles.newBtn}>
                     New Item
                 </Button>
             </View>
@@ -52,22 +60,22 @@ export default function SellerMode({ accentColor, navigation }) {
                 }}
                 style={{ width: '100%' }}>
 
-                    {itemList.map((item)=>{
-                        return (
-                            <ItemCard key={item.id} id={item.id} title={item.title}
+                {itemList.map((item) => {
+                    return (
+                        <ItemCard key={item.id} id={item.id} title={item.title}
                             amount={item.amount + item.unit} price={item.price} status={item.status}
-                            maxBid={item.maxBid} navigation={navigation} unit={item.unit}/>
-                        )
-                    })}
-      
+                            maxBid={item.maxBid} navigation={navigation} unit={item.unit} />
+                    )
+                })}
 
-               
+
+
 
 
 
 
             </ScrollView>
-            <TabBar  navigation={navigation} role={'seller'}/>
+            <TabBar navigation={navigation} role={'seller'} />
 
         </View>
     )
