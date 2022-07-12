@@ -20,9 +20,11 @@ export default function SellerMode({ accentColor, navigation }) {
     
 
     useEffect(() => {
+  
+        
         setItemList(ResponseData)
         const endpoint = "https://jsonkeeper.com/b/ZZHT";
-        fetch(endpoint)
+        fetch(endpoint,{method:'get'})
             .then((response) => response.json())
             .then((json) => setItemList(json))
             .catch((err) => { console.log(err) })
