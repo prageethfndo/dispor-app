@@ -11,23 +11,32 @@ import { useEffect, useState } from 'react';
 import ResponseData from '../temp/ResponseData';
 import TabBar from './TabBar';
 
+
 export default function SellerMode({ accentColor, navigation }) {
 
 
 
     const [itemList, setItemList] = useState([])
 
-    
 
+    const userid='62cdbb4bdb143b43a1b5d147';
     useEffect(() => {
-  
-        
-        setItemList(ResponseData)
-        const endpoint = "https://jsonkeeper.com/b/ZZHT";
-        fetch(endpoint,{method:'get'})
-            .then((response) => response.json())
-            .then((json) => setItemList(json))
-            .catch((err) => { console.log(err) })
+
+
+        // setItemList(ResponseData)
+        const getData = async () => {
+            const endpoint = `https://dispor-api.herokuapp.com/listings`;
+            const response = await fetch(endpoint, {
+                method: 'get', headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+               const data = await response.json()
+               setItemList(data)
+               console.log(data)
+        }
+            
+        getData().catch(console.log)
 
     }, [])
 
@@ -65,7 +74,7 @@ export default function SellerMode({ accentColor, navigation }) {
                 {itemList.map((item) => {
                     return (
                         <ItemCard key={item.id} id={item.id} title={item.title}
-                            amount={item.amount + item.unit} price={item.price} status={item.status}
+                            amount={item.weight} price={item.price} status={item.status}
                             maxBid={item.maxBid} navigation={navigation} unit={item.unit} />
                     )
                 })}
