@@ -36,7 +36,7 @@ export default function ItemCard({ id, title, amount, price, status, maxBid, nav
 
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
 
-                        <Text style={Styles.itemCardWeight}>{amount}</Text>
+                        <Text style={Styles.itemCardWeight}>{amount}g</Text>
                         <Text style={Styles.itemCardPrice}>{price} LKR</Text>
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>

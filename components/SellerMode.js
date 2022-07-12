@@ -75,7 +75,7 @@ export default function SellerMode({ accentColor, navigation }) {
                     return (
                         <ItemCard key={item.id} id={item.id} title={item.title}
                             amount={item.weight} price={item.price} status={item.status}
-                            maxBid={item.maxBid} navigation={navigation} unit={item.unit} />
+                            maxBid={item.maxBid} navigation={navigation}  />
                     )
                 })}
 
