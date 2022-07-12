@@ -9,7 +9,7 @@ import type { Node } from 'react';
 import { List } from 'react-native-paper';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import styles from './Styles';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch } from 'react-native-paper';
 import { Subheading } from 'react-native-paper';
 import { NavigationContainer, useLinkProps, route } from '@react-navigation/native';
@@ -40,6 +40,7 @@ export default function NewListing({ accentColor, navigation, route }) {
     status,
     maxBid, unit } = route.params;
     console.log(id)
+
   return (
     <>
       <View
