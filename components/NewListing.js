@@ -27,11 +27,13 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   const [price, setPrice] = useState(0)
   const [qtyMode, setQtyMode] = useState("units")
   const [unitPrice, setUnitPrice] = useState(0)
+  const [unitWeight, setUnitWeight]= useState(0)
 
-  const handleUnitOptionSelection = (type, unitPrice) => {
+  const handleUnitOptionSelection = (type, unitPrice,unitWeight) => {
     console.log(type + unitPrice)
     setType(type)
     setUnitPrice(unitPrice)
+    setUnitWeight(unitWeight)
     setExpanded(false)
   }
   //switch  variables
@@ -133,18 +135,27 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
     setIsUpdate(true)
   }
 
-  useEffect(()=>{
-    const computePrice=(text)=>{
-      //setWeight(text)
-     var finalPrice = unitPrice*weight;
-     console.log(finalPrice)
-     //console.log(weight)
-      setPrice(finalPrice)    
-  
+  useEffect(() => {
+    console.log(qtyMode)
+    const computePrice = (text) => {
+      var finalPrice;
+      if (isSwitchOn) {
+        finalPrice = (weight/unitWeight)*unitPrice
+        console.log(finalPrice)
+        //console.log(weight)
+        setPrice(finalPrice)
+      }
+      else {
+        //setWeight(text)
+        finalPrice = unitPrice * weight;
+        console.log(finalPrice)
+        //console.log(weight)
+        setPrice(finalPrice)
+      }
     }
 
     computePrice()
-  },[weight])
+  },[weight, isSwitchOn, setTitle, type])
   
 
   
@@ -196,7 +207,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
               {typeList.map((item) => {
                 return (
                   <List.Item title={item.name} key={Math.random()}
-                    onPress={() => { handleUnitOptionSelection(item.name, item.unitPrice) }} />)
+                    onPress={() => { handleUnitOptionSelection(item.name, item.unitPrice, item.unitWeight) }} />)
               })}
 
 
