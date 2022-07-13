@@ -21,15 +21,15 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   const handlePress = () => setExpanded(!expanded);
   const [typeList, setTypeList] = useState(['Jar'])
 
-  
-  const [title, setTitle]= useState("")
-  const [weight, setWeight]= useState(0)
+
+  const [title, setTitle] = useState("")
+  const [weight, setWeight] = useState(0)
   const [price, setPrice] = useState(0)
   const [qtyMode, setQtyMode] = useState("units")
   const [unitPrice, setUnitPrice] = useState(0)
-  const [unitWeight, setUnitWeight]= useState(0)
+  const [unitWeight, setUnitWeight] = useState(0)
 
-  const handleUnitOptionSelection = (type, unitPrice,unitWeight) => {
+  const handleUnitOptionSelection = (type, unitPrice, unitWeight, material) => {
     console.log(type + unitPrice)
     setType(type)
     setUnitPrice(unitPrice)
@@ -41,8 +41,8 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
 
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);
-  if(isSwitchOn) setQtyMode("weight")
-  else setQtyMode("units")
+    if (isSwitchOn) setQtyMode("weight")
+    else setQtyMode("units")
     //console.log(isSwitchOn);
     //console.log(qtyMode)
   };
@@ -50,12 +50,12 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   const {
     isEditing,
     id } = route.params;
-  
+
   const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`;
   useEffect(() => {
     console.log(isSwitchOn)
     const getData = async () => {
-     
+
       const response = await fetch(endpoint, {
         method: 'get', headers: {
           'Content-Type': 'application/json',
@@ -67,10 +67,10 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
       setWeight(data.weight)
       setPrice(data.price)
       console.log(data)
-      
+
     }
 
-    const getItems = async()=>{
+    const getItems = async () => {
 
       const response = await fetch("https://dispor-api.herokuapp.com/items", {
         method: 'get', headers: {
@@ -80,27 +80,27 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
       const data = await response.json()
       //setItemList(data)
       setTypeList(data)
-      
+
       console.log(data)
     }
 
-    if(isEditing)getData().catch(console.log)
+    if (isEditing) getData().catch(console.log)
     getItems().catch(console.log)
-  },[])
+  }, [])
 
-  const editItem= async ()=>{
-   
-    const response = await fetch(endpoint,{
-      method:'put',
-      headers:{
+  const editItem = async () => {
+
+    const response = await fetch(endpoint, {
+      method: 'put',
+      headers: {
         'Content-Type': 'application/json',
       },
-      body:JSON.stringify({
+      body: JSON.stringify({
         userId: userData.userid,
-				title: title,
-				description: "",
-				weight: computeWeight(),
-				price: price
+        title: title,
+        description: "",
+        weight: computeWeight(),
+        price: price
       })
     })
 
@@ -113,22 +113,22 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   }
 
 
-  const computeWeight=()=>{
-    if(isSwitchOn){return weight }
-    else {return weight*unitWeight}
+  const computeWeight = () => {
+    if (isSwitchOn) { return weight }
+    else { return weight * unitWeight }
   }
-  const createListing= async()=>{
-    const response = await fetch("https://dispor-api.herokuapp.com/listings",{
-      method:'post',
-      headers:{
+  const createListing = async () => {
+    const response = await fetch("https://dispor-api.herokuapp.com/listings", {
+      method: 'post',
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         userId: userData.userid,
-				title: title,
-				description: "",
-				weight: computeWeight(),
-				price: price
+        title: title,
+        description: "",
+        weight: computeWeight(),
+        price: price
       })
     })
 
@@ -144,7 +144,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
     const computePrice = (text) => {
       var finalPrice;
       if (isSwitchOn) {
-        finalPrice = (weight/unitWeight)*unitPrice
+        finalPrice = (weight / unitWeight) * unitPrice
         console.log(finalPrice)
         //console.log(weight)
         setPrice(finalPrice)
@@ -160,10 +160,10 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
     }
 
     computePrice()
-  },[weight, isSwitchOn, setTitle, type])
-  
+  }, [weight, isSwitchOn, setTitle, type])
 
-  
+
+
 
   return (
     <>
@@ -196,8 +196,8 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
             value={title}
-            onChangeText={text=>{setTitle(text)}}
-            
+            onChangeText={text => { setTitle(text) }}
+
           />
 
           <List.Section style={{ width: '100%', }}>
@@ -211,8 +211,8 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
 
               {typeList.map((item) => {
                 return (
-                  <List.Item title={item.name} key={Math.random()}
-                    onPress={() => { handleUnitOptionSelection(item.name, item.unitPrice, item.unitWeight) }} />)
+                  <List.Item title={`${item.name} (${item.material})`} key={Math.random()}
+                    onPress={() => { handleUnitOptionSelection(item.name, item.unitPrice, item.unitWeight, item.material) }} />)
               })}
 
 
@@ -236,7 +236,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
             value={weight.toString()}
-            onChangeText={text=>{setWeight(text)}}
+            onChangeText={text => { setWeight(text) }}
           />
           <Text style={{ marginTop: 20 }}>You will earn</Text>
           <Subheading>{price} LKR</Subheading>
