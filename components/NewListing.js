@@ -99,7 +99,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
         userId: userData.userid,
 				title: title,
 				description: "",
-				weight: weight,
+				weight: computeWeight(),
 				price: price
       })
     })
@@ -113,6 +113,10 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   }
 
 
+  const computeWeight=()=>{
+    if(isSwitchOn){return weight }
+    else {return weight*unitWeight}
+  }
   const createListing= async()=>{
     const response = await fetch("https://dispor-api.herokuapp.com/listings",{
       method:'post',
@@ -123,7 +127,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
         userId: userData.userid,
 				title: title,
 				description: "",
-				weight: weight,
+				weight: computeWeight(),
 				price: price
       })
     })
@@ -151,6 +155,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
         console.log(finalPrice)
         //console.log(weight)
         setPrice(finalPrice)
+        //setWeight()
       }
     }
 
