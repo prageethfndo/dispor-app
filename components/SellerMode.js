@@ -11,6 +11,7 @@ import { useEffect, useState,useContext } from 'react';
 import ResponseData from '../temp/ResponseData';
 import TabBar from './TabBar';
 import { UserContext } from '../context/userContext';
+import Spinner from './Spinner';
 
 
 export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpdate, showToast }) {
@@ -18,6 +19,7 @@ export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpda
     const userData = useContext(UserContext)
 
     const [itemList, setItemList] = useState([])
+    const [showSpinner, setShowSpinner] = useState("none")
 
 
     const userid=userData.userid;
@@ -51,15 +53,18 @@ export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpda
 
             height: '100%'
         }}>
+            
             <Profile username={'Kumara'} role={'seller'} toggle={true} />
 
-
+        
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>
+                
                 <Text style={{ marginTop: 20, fontSize: 20, color: '#000', marginBottom: 10 }} >Your items on sale</Text>
                 <Button icon="plus" mode="contained" onPress={() => navigation.navigate('NewListing', { isEditing: false })} color={accentColor} style={Styles.newBtn}>
                     New Item
                 </Button>
-            </View>
+              
+            </View><Spinner display={showSpinner}/>
 
 
 
@@ -72,12 +77,14 @@ export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpda
                     paddingBottom: 100
                 }}
                 style={{ width: '100%' }}>
+                  
 
                 {itemList.map((item) => {
                     return (
                         <ItemCard key={item.id} id={item.id} title={item.title}
                             amount={item.weight} price={item.price} status={item.status}
-                            maxBid={item.maxBid} navigation={navigation}  isUpdate={isUpdate} setIsUpdate={setIsUpdate} showToast={showToast}/>
+                            maxBid={item.maxBid} navigation={navigation}  isUpdate={isUpdate} setIsUpdate={setIsUpdate} 
+                            showToast={showToast} setShowSpinner={setShowSpinner}/>
                     )
                 })}
 

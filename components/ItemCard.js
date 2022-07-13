@@ -6,7 +6,7 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
-export default function ItemCard({ id, title, amount, price, status, maxBid, navigation, editCard, isEditing, unit, setIsUpdate, isUpdate,showToast }) { 
+export default function ItemCard({ id, title, amount, price, status, maxBid, navigation, editCard, isEditing, unit, setIsUpdate, isUpdate,showToast,setShowSpinner }) { 
 
     const editItem = () => {
         navigation.navigate('NewListing', {
@@ -18,6 +18,7 @@ export default function ItemCard({ id, title, amount, price, status, maxBid, nav
     const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`;
 
     const deleteListing = async () => {
+        setShowSpinner("flex")
         console.log(id)
         const response = await fetch(endpoint,
           {
@@ -33,7 +34,7 @@ export default function ItemCard({ id, title, amount, price, status, maxBid, nav
         console.log(data)
        showToast("Listing has been deleted")
         setIsUpdate(true)
-        
+        setShowSpinner("none")
       }
 
     return (
