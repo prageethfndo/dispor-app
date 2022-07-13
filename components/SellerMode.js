@@ -7,25 +7,26 @@ import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 
 import ItemCard from './ItemCard';
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import ResponseData from '../temp/ResponseData';
 import TabBar from './TabBar';
+import { UserContext } from '../context/userContext';
 
 
 export default function SellerMode({ accentColor, navigation }) {
 
-
+    const userData = useContext(UserContext)
 
     const [itemList, setItemList] = useState([])
 
 
-    const userid='62cdbb4bdb143b43a1b5d147';
+    const userid=userData.userid;
     useEffect(() => {
 
 
         // setItemList(ResponseData)
         const getData = async () => {
-            const endpoint = `https://dispor-api.herokuapp.com/listings`;
+            const endpoint = `https://dispor-api.herokuapp.com/users/${userid}/listings`;
             const response = await fetch(endpoint, {
                 method: 'get', headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +39,7 @@ export default function SellerMode({ accentColor, navigation }) {
             
         getData().catch(console.log)
 
-    }, [])
+    }, [itemList])
 
     return (
         <View style={{

@@ -11,14 +11,7 @@ export default function ItemCard({ id, title, amount, price, status, maxBid, nav
     const editItem = () => {
         navigation.navigate('NewListing', {
             id:id,
-            isEditing:true, 
-            title:title,
-            amount:amount,
-            price:price,
-            status:status,
-            maxBid:maxBid,
-            unit:unit,
-            price:price
+            isEditing:true
 
         })                
     }   
