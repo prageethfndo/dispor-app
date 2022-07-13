@@ -17,33 +17,41 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
 
   //dropdown list variables
   const [expanded, setExpanded] = useState(false);
-  const [type, setType] = useState('Plastic')
+  const [type, setType] = useState('Select ')
   const handlePress = () => setExpanded(!expanded);
-  const [typeList, setTypeList] = useState(['Plastic', 'Metal', 'Glass'])
+  const [typeList, setTypeList] = useState(['Jar'])
 
   
   const [title, setTitle]= useState("")
   const [weight, setWeight]= useState(0)
   const [price, setPrice] = useState(0)
+  const [qtyMode, setQtyMode] = useState("units")
+  const [unitPrice, setUnitPrice] = useState(0)
 
-  const handleUnitOptionSelection = (type) => {
-    console.log(type.item)
-    setType(type.item)
+  const handleUnitOptionSelection = (type, unitPrice) => {
+    console.log(type + unitPrice)
+    setType(type)
+    setUnitPrice(unitPrice)
     setExpanded(false)
   }
   //switch  variables
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn);
-    console.log(isSwitchOn);
+  if(isSwitchOn) setQtyMode("weight")
+  else setQtyMode("units")
+    //console.log(isSwitchOn);
+    //console.log(qtyMode)
   };
 
   const {
     isEditing,
     id } = route.params;
-  console.log(id)
+  
   const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`;
   useEffect(() => {
+    console.log(isSwitchOn)
     const getData = async () => {
      
       const response = await fetch(endpoint, {
@@ -60,7 +68,22 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
       
     }
 
+    const getItems = async()=>{
+
+      const response = await fetch("https://dispor-api.herokuapp.com/items", {
+        method: 'get', headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const data = await response.json()
+      //setItemList(data)
+      setTypeList(data)
+      
+      console.log(data)
+    }
+
     if(isEditing)getData().catch(console.log)
+    getItems().catch(console.log)
   },[])
 
   const editItem= async ()=>{
@@ -110,6 +133,20 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
     setIsUpdate(true)
   }
 
+  useEffect(()=>{
+    const computePrice=(text)=>{
+      //setWeight(text)
+     var finalPrice = unitPrice*weight;
+     console.log(finalPrice)
+     //console.log(weight)
+      setPrice(finalPrice)    
+  
+    }
+
+    computePrice()
+  },[weight])
+  
+
   
 
   return (
@@ -158,8 +195,8 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
 
               {typeList.map((item) => {
                 return (
-                  <List.Item title={item} key={Math.random()}
-                    onPress={() => { handleUnitOptionSelection({ item }) }} />)
+                  <List.Item title={item.name} key={Math.random()}
+                    onPress={() => { handleUnitOptionSelection(item.name, item.unitPrice) }} />)
               })}
 
 
@@ -173,12 +210,12 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
               onValueChange={onToggleSwitch}
               color={accentColor}
             />
-            <Text style={styles.loginText}>&nbsp; {"Weight"}</Text>
+            <Text style={styles.loginText}>&nbsp; Weight (grams)</Text>
           </View>
 
           <TextInput
             style={styles.textBox}
-            label="Quantity (g)"
+            label={`Quantity`}
             placeholder="Enter Waste Quantity"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
