@@ -11,7 +11,7 @@ import { Subheading } from 'react-native-paper';
 import { UserContext } from '../context/userContext';
 
 
-export default function NewListing({ accentColor, navigation, route }) {
+export default function NewListing({ accentColor, navigation, route, showToast, setIsUpdate }) {
 
   const userData = useContext(UserContext)
 
@@ -82,8 +82,35 @@ export default function NewListing({ accentColor, navigation, route }) {
     const data = await response.json()
     console.log(data)
     //console.log(weight)
+    showToast("Item Updated")
     navigation.navigate("SellerMode")
+    setIsUpdate(true)
   }
+
+
+  const createListing= async()=>{
+    const response = await fetch("https://dispor-api.herokuapp.com/listings",{
+      method:'post',
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: userData.userid,
+				title: title,
+				description: "",
+				weight: weight,
+				price: price
+      })
+    })
+
+    const data = await response.json()
+    console.log(data)
+    navigation.navigate("SellerMode")
+    showToast("Listing has been created")
+    setIsUpdate(true)
+  }
+
+  
 
   return (
     <>
@@ -170,7 +197,7 @@ export default function NewListing({ accentColor, navigation, route }) {
               Edit Listing
             </Button> : <Button
               mode="contained"
-              onPress={() => navigation.navigate("SellerMode")}
+              onPress={() => createListing()}
               style={styles.regBtn}
               color={accentColor}>
               Create Listing

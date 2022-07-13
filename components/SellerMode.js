@@ -4,7 +4,7 @@ import Styles from './Styles';
 import AppBar from './AppBar';
 import Profile from './Profile';
 import StatsCard from './StatsCard';
-import { Subheading, FAB, Button } from 'react-native-paper';
+import { Subheading, FAB, Button, ActivityIndicator, MD2Colors } from 'react-native-paper';
 
 import ItemCard from './ItemCard';
 import { useEffect, useState,useContext } from 'react';
@@ -13,7 +13,7 @@ import TabBar from './TabBar';
 import { UserContext } from '../context/userContext';
 
 
-export default function SellerMode({ accentColor, navigation }) {
+export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpdate, showToast }) {
 
     const userData = useContext(UserContext)
 
@@ -38,8 +38,9 @@ export default function SellerMode({ accentColor, navigation }) {
         }
             
         getData().catch(console.log)
+        setIsUpdate(false)
 
-    }, [itemList])
+    }, [isUpdate])
 
     return (
         <View style={{
@@ -76,7 +77,7 @@ export default function SellerMode({ accentColor, navigation }) {
                     return (
                         <ItemCard key={item.id} id={item.id} title={item.title}
                             amount={item.weight} price={item.price} status={item.status}
-                            maxBid={item.maxBid} navigation={navigation}  />
+                            maxBid={item.maxBid} navigation={navigation}  isUpdate={isUpdate} setIsUpdate={setIsUpdate} showToast={showToast}/>
                     )
                 })}
 

@@ -32,6 +32,7 @@ const App: () => Node = () => {
   //set the global accent color for all components
   const accentColor = '#17AF82';
 
+  const [isUpdate, setIsUpdate] = useState(false)
   //change
   return (
     <><NavigationContainer>
@@ -45,7 +46,7 @@ const App: () => Node = () => {
         </Stack.Screen>
 
         <Stack.Screen name='SellerMode' options={{ title: "", headerShown: false }}>
-          {props => <SellerMode {...props} accentColor={accentColor} />}
+          {props => <SellerMode {...props} accentColor={accentColor} isUpdate={isUpdate} setIsUpdate={setIsUpdate} showToast={showToast}/>}
         </Stack.Screen>
 
 
@@ -59,7 +60,7 @@ const App: () => Node = () => {
           }, headerTitleStyle: { color: "#fff" },
           headerTintColor: "#fff", headerShadowVisible: false
         }}>
-          {props => <NewListing {...props} accentColor={accentColor} />}
+          {props => <NewListing {...props} accentColor={accentColor} showToast={showToast} setIsUpdate={setIsUpdate}/>}
         </Stack.Screen>
 
         <Stack.Screen name='Listings' options={{
