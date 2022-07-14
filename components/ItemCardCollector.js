@@ -44,7 +44,7 @@ export default function ItemCardCollector({ title, amount, price, status, maxBid
 
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
 
-                        <Text style={Styles.itemCardWeight}>{amount}{unit}</Text>
+                        <Text style={Styles.itemCardWeight}>{amount}{"g"}</Text>
                         <Text style={Styles.itemCardPrice}>{price} LKR</Text>
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>

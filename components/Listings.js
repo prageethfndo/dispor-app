@@ -15,7 +15,24 @@ export default function Listings({ navigation }) {
     const [itemList, setItemList] = useState([])
     useEffect(() => {
         setItemList(ResponseData)
-    })
+        const endpoint="https://dispor-api.herokuapp.com/listings";
+
+        const getListings= async()=>{
+            const response = await fetch(endpoint,{
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                method:'get'
+            })
+
+            const data = await response.json()
+            console.log(data)
+            setItemList(data)
+
+
+        }
+        getListings().catch(console.log)
+    },[])
     return (
         <View
             style={Styles.viewContainer} style={{ paddingBottom: '2%' }}>
@@ -32,7 +49,7 @@ export default function Listings({ navigation }) {
                 {itemList.map((item) => {
                     return (
                         <ItemCardCollector key={item.id} title={item.title}
-                            amount={item.amount + item.unit} price={item.price} 
+                            amount={item.weight} price={item.price} 
                             maxBid={item.maxBid}
                             status={item.status}
                             navigation={navigation}
