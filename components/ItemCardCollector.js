@@ -6,11 +6,11 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
-export default function ItemCardCollector({ title, amount, price, status, maxBid, navigation, newBid, unit }) {
+export default function ItemCardCollector({ id,title, amount, price, status, maxBid, navigation, newBid, unit }) {
     const _handleOnClick = () => {
         navigation.navigate("Bidding", {
             isEditing: false, 
-            title: title,
+            id: id,
             amount: amount,
             price: price,
             unit: unit,
@@ -21,12 +21,7 @@ export default function ItemCardCollector({ title, amount, price, status, maxBid
     const _handleOnClick2 = () => {
         navigation.navigate("Bidding", {
             isEditing: true,
-            title: title,
-            amount: amount,
-            price: price,
-            unit: unit,
-            status: status,
-            maxBid: maxBid
+           id:id,
 
         })
     };

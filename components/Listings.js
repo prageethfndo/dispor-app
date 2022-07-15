@@ -48,7 +48,7 @@ export default function Listings({ navigation }) {
 
                 {itemList.map((item) => {
                     return (
-                        <ItemCardCollector key={item.id} title={item.title}
+                        <ItemCardCollector key={item.id} id={item.id} title={item.title}
                             amount={item.weight} price={item.price} 
                             maxBid={item.maxBid}
                             status={item.status}

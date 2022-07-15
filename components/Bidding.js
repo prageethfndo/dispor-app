@@ -9,31 +9,31 @@ import type { Node } from 'react';
 import { List } from 'react-native-paper';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import styles from './Styles';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Switch } from 'react-native-paper';
 import { Subheading, Avatar } from 'react-native-paper';
 import AppBar from './AppBar';
 import PageHeader from './PageHeader';
 import Toast from './Toast';
+import { UserContext } from '../context/userContext';
+
 
 
 
 export default function NewListing({ accentColor, navigation, route, showToast }) {
 
-
+const userData = useContext(UserContext)
   //dropdown list variables
 
  
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
-  const [ItemTitle, setItemTitle] = useState("")
-  const [ItemAmount, setItemAmount] = useState(0)
-
-  const [ItemUnit, setItemUnit] = useState("KG")
+  const [itemData, setItemData] = useState({title:"", weight:"0"})
+ 
   const [ItemMaxBid, setItemMaxBid] = useState("KG")
 
   //new bid amount 
-  const [bid, setBid] = useState("0")
+  const [bid, setBid] = useState()
 
   //current bid set by the user
   const [currentBid, setCurrentBid] = useState("545")
@@ -44,17 +44,27 @@ export default function NewListing({ accentColor, navigation, route, showToast }
     setIsSwitchOn(!isSwitchOn);
     console.log(isSwitchOn);
   };
-  const { isEditing,
-    title,
-    amount,
-    price,
-    unit,
-    status,
-    maxBid } = route.params;
+  const { isEditing, id, } = route.params;
   //const { itemData } = route.params;
 
   useEffect(() => {
+  console.log(id)
+    const getData=async()=>{
+      const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`
+      const response = await fetch(endpoint, {
+        method:"get",
+        headers:{
+          'Content-Type': 'application/json',
+        }
+      })
 
+      const data = await response.json()
+      setItemData(data)
+      console.log(data)
+
+    }
+
+   /* 
     setItemTitle(title)
     setItemAmount(amount)
     setItemMaxBid(maxBid)
@@ -65,9 +75,9 @@ export default function NewListing({ accentColor, navigation, route, showToast }
     }
     else {
       setBid(maxBid + 1)
-    }
-
-
+    } */
+  console.log(id)
+ getData().catch(console.log)
 
   }, [])
 
@@ -78,9 +88,25 @@ export default function NewListing({ accentColor, navigation, route, showToast }
     showToast("Your changes has been saved")
   }
 
+ 
 
-  const handleNewBid=()=>{
-    navigation.navigate("CollectorMode")
+  const handleNewBid=async()=>{
+    console.log("user id" + userData.userid)
+    console.log("listing id" + id)
+    const response = await fetch("https://dispor-api.herokuapp.com/bids", {method: "post",
+      headers: {
+        'Content-Type': 'application/json',
+      }, 
+      body: JSON.stringify( {
+        listingId: id,
+        userId: userData.userid,
+        amount: bid,
+      })
+    })
+
+    const data = await response.json()
+    console.log(data)
+    //navigation.navigate("CollectorMode")
     showToast("Your bid has been saved")
   }
   return (
@@ -120,9 +146,9 @@ export default function NewListing({ accentColor, navigation, route, showToast }
           }}
 
         >
-          <Subheading style={{ fontSize: 20 }}>{ItemTitle}</Subheading>
+          <Subheading style={{ fontSize: 20 }}>{itemData.title}</Subheading>
 
-          <Subheading style={{ fontSize: 20, fontWeight: '800' }}>{ItemAmount} {ItemUnit}</Subheading>
+          <Subheading style={{ fontSize: 20, fontWeight: '800' }}>{itemData.weight}g</Subheading>
 
           <Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid
           </Subheading>
@@ -141,6 +167,7 @@ export default function NewListing({ accentColor, navigation, route, showToast }
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
             value={bid}
+            onChangeText={(text)=>{setBid(text)}}  
           />
           <View style={{
             display: 'flex',
