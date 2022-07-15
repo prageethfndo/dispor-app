@@ -78,6 +78,7 @@ const userData = useContext(UserContext)
     } */
   console.log(id)
  getData().catch(console.log)
+ getBidData().catch(console.log)
 
   }, [])
 
@@ -88,7 +89,19 @@ const userData = useContext(UserContext)
     showToast("Your changes has been saved")
   }
 
- 
+  const getBidData = async () => {
+    const response = await fetch(`https://dispor-api.herokuapp.com/listings/${id}/bids`,
+      {
+        method: 'get', headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+
+    const data = await response.json()
+    console.log(data)
+    const maxValueOfY = Math.max(...data.map(o => o.amount), 0);
+    setItemMaxBid(maxValueOfY)
+  }
 
   const handleNewBid=async()=>{
     console.log("user id" + userData.userid)
