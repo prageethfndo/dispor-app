@@ -56,8 +56,16 @@ export default function ItemCard({ id, title, amount, price, status, navigation,
         setMaxBid(maxValueOfY)
       }
 
+      const ViewBids=()=>{
+        navigation.navigate('Bids',{
+            id:id, price:price, title:title, status:status, weight:amount
+        })
+
+        console.log("test")
+      }
+
     return (
-        <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
+        <Card style={Styles.itemCard} onPress={()=>{ViewBids()}}>
 
             <Card.Content>
                 <Text style={Styles.itemCardTitle}>{title}</Text>
@@ -74,7 +82,7 @@ export default function ItemCard({ id, title, amount, price, status, navigation,
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                         <Text style={Styles.itemCardText}>Status: {status}</Text>
-                        <Text style={Styles.itemCardText}>Highest Bid: {maxBid} LKR</Text>
+                      {/*  <Text style={Styles.itemCardText}>Highest Bid: {maxBid} LKR</Text>*/}
 
                     </View>
                 </View>

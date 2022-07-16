@@ -17,6 +17,7 @@ import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useState } from 'react';
 import Toast from './components/Toast';
+import Bids from './components/Bids';
 
 
 
@@ -79,6 +80,15 @@ const App: () => Node = () => {
           headerTintColor: '#fff', headerShadowVisible: false
         }}>
           {props => <Bidding {...props} accentColor={accentColor} showToast={showToast} isUpdate={isUpdate} setIsUpdate={setIsUpdate}/>}
+        </Stack.Screen>
+
+        <Stack.Screen name='Bids' options={{
+          title: "View Bids", headerShown: true, headerStyle: {
+            backgroundColor: accentColor
+          }, headerTitleStyle: { color: "#fff" },
+          headerTintColor: '#fff', headerShadowVisible: false
+        }}>
+          {props => <Bids {...props} accentColor={accentColor} showToast={showToast} isUpdate={isUpdate} setIsUpdate={setIsUpdate}/>}
         </Stack.Screen>
 
       </Stack.Navigator>
