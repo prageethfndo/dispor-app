@@ -5,8 +5,9 @@ import AppBar from './AppBar';
 import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
+import {useState, useEffect} from 'react'
 
-export default function ItemCard({ id, title, amount, price, status, maxBid, navigation, editCard, isEditing, unit, setIsUpdate, isUpdate,showToast,setShowSpinner }) { 
+export default function ItemCard({ id, title, amount, price, status, navigation, editCard, isEditing, unit, setIsUpdate, isUpdate,showToast,setShowSpinner }) { 
 
     const editItem = () => {
         navigation.navigate('NewListing', {
@@ -16,6 +17,7 @@ export default function ItemCard({ id, title, amount, price, status, maxBid, nav
         })                
     }
     const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`;
+    const [maxBid, setMaxBid] = useState()
 
     const deleteListing = async () => {
         setShowSpinner("flex")
@@ -35,6 +37,23 @@ export default function ItemCard({ id, title, amount, price, status, maxBid, nav
        showToast("Listing has been deleted")
         setIsUpdate(true)
         setShowSpinner("none")
+      }
+
+      useEffect(()=>{
+       // getMaxBid().catch(console.log)
+      },[id])
+      
+      const getMaxBid = async ()=>{
+        const response = await fetch(`https://dispor-api.herokuapp.com/listings/${id}/bids`,
+        {method:'get', headers:{
+            'Content-Type': 'application/json',
+        }})
+
+        const data = response.json()
+        
+        console.log(data)
+        const maxValueOfY = Math.max(...data.map(o => o.amount), 0);
+        setMaxBid(maxValueOfY)
       }
 
     return (
