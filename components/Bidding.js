@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppRegistry,ToastAndroid } from 'react-native';
+import { AppRegistry, ToastAndroid } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { name as appName } from './app.json';
 import logo from '../assests/img/logo.png';
@@ -20,16 +20,16 @@ import { UserContext } from '../context/userContext';
 
 
 
-export default function NewListing({ accentColor, navigation, route, showToast }) {
+export default function NewListing({ accentColor, navigation, route, showToast, setIsUpdate }) {
 
-const userData = useContext(UserContext)
+  const userData = useContext(UserContext)
   //dropdown list variables
 
- 
+
   const [expanded, setExpanded] = React.useState(true);
   const handlePress = () => setExpanded(!expanded);
-  const [itemData, setItemData] = useState({title:"", weight:"0"})
- 
+  const [itemData, setItemData] = useState({ title: "", weight: "0", amount: 0, listing: { title: "" } })
+
   const [ItemMaxBid, setItemMaxBid] = useState("KG")
 
   //new bid amount 
@@ -48,12 +48,12 @@ const userData = useContext(UserContext)
   //const { itemData } = route.params;
 
   useEffect(() => {
-  console.log(id)
-    const getData=async()=>{
+    console.log("item" + id)
+    const getData = async () => {
       const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`
       const response = await fetch(endpoint, {
-        method:"get",
-        headers:{
+        method: "get",
+        headers: {
           'Content-Type': 'application/json',
         }
       })
@@ -64,27 +64,63 @@ const userData = useContext(UserContext)
 
     }
 
-   /* 
-    setItemTitle(title)
-    setItemAmount(amount)
-    setItemMaxBid(maxBid)
-    setItemUnit(unit)
-    setBid(currentBid)
-    if (isEditing === true) {
-      setBid(currentBid)
+    /* 
+     setItemTitle(title)
+     setItemAmount(amount)
+     setItemMaxBid(maxBid)
+     setItemUnit(unit)
+     setBid(currentBid)
+     if (isEditing === true) {
+       setBid(currentBid)
+     }
+     else {
+       setBid(maxBid + 1)
+     } */
+    if (isEditing === false) {
+      console.log(id)
+      getData().catch(console.log)
+      getBidData().catch(console.log)
     }
     else {
-      setBid(maxBid + 1)
-    } */
-  console.log(id)
- getData().catch(console.log)
- getBidData().catch(console.log)
+      editBidData().catch(console.log)
+      getBidData().catch(console.log)
+
+    }
 
   }, [])
 
+  const editBidData = async () => {
+    const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`,
+      {
+        method: 'get', headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+    const data = await response.json();
+    console.log(data)
+    setItemData(data)
+    setBid(data.amount.toString())
+
+
+  }
   //function for save edit data
-  const handleSaveEdit = () => {
-    
+  const handleSaveEdit = async () => {
+    const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`, {
+      method: 'put', headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        listingId: itemData.listingId,
+        userId: userData.userid,
+        amount: bid,
+        status: "ACTIVE",
+      })
+
+
+    })
+    const data = await response.json()
+    console.log(data)
+    setIsUpdate(true)
     navigation.navigate("CollectorMode")
     showToast("Your changes has been saved")
   }
@@ -103,14 +139,15 @@ const userData = useContext(UserContext)
     setItemMaxBid(maxValueOfY)
   }
 
-  const handleNewBid=async()=>{
+  const handleNewBid = async () => {
     console.log("user id" + userData.userid)
     console.log("listing id" + id)
-    const response = await fetch("https://dispor-api.herokuapp.com/bids", {method: "post",
+    const response = await fetch("https://dispor-api.herokuapp.com/bids", {
+      method: "post",
       headers: {
         'Content-Type': 'application/json',
-      }, 
-      body: JSON.stringify( {
+      },
+      body: JSON.stringify({
         listingId: id,
         userId: userData.userid,
         amount: bid,
@@ -119,7 +156,8 @@ const userData = useContext(UserContext)
 
     const data = await response.json()
     console.log(data)
-    //navigation.navigate("CollectorMode")
+    navigation.navigate("CollectorMode")
+    setIsUpdate(true)
     showToast("Your bid has been saved")
   }
   return (
@@ -138,7 +176,7 @@ const userData = useContext(UserContext)
         <PageHeader heading={" Your Bid"} subheading={"Put maximum bid amount you can to win"}
           height={"40%"} icon={"briefcase-upload"} />
 
-       
+
 
         {/*textinputs*/}
         <ScrollView
@@ -159,18 +197,18 @@ const userData = useContext(UserContext)
           }}
 
         >
-          <Subheading style={{ fontSize: 20 }}>{itemData.title}</Subheading>
+          <Subheading style={{ fontSize: 20 }}>{(isEditing === true) ? itemData.listing.title : itemData.title}</Subheading>
 
-          <Subheading style={{ fontSize: 20, fontWeight: '800' }}>{itemData.weight}g</Subheading>
+          <Subheading style={{ fontSize: 20, fontWeight: '800' }}>{(isEditing === true) ? itemData.listing.weight : itemData.weight}g</Subheading>
 
-          <Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid
+          {(isEditing === false) ? <View><Subheading style={{ fontSize: 15, marginTop: 10 }}>Max Bid
           </Subheading>
 
 
-          <Subheading style={{ color: accentColor, fontSize: 25, marginTop: 10, }}>
-            {ItemMaxBid}LKR  <Avatar.Icon icon={"arrow-up-bold"} color={accentColor}
-              size={40} style={{ backgroundColor: 'transparent' }} />
-          </Subheading>
+            <Subheading style={{ color: accentColor, fontSize: 25, marginTop: 10, }}>
+              {ItemMaxBid}LKR  <Avatar.Icon icon={"arrow-up-bold"} color={accentColor}
+                size={40} style={{ backgroundColor: 'transparent' }} />
+            </Subheading></View> : null}
 
 
           <TextInput
@@ -180,7 +218,7 @@ const userData = useContext(UserContext)
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
             value={bid}
-            onChangeText={(text)=>{setBid(text)}}  
+            onChangeText={(text) => { setBid(text) }}
           />
           <View style={{
             display: 'flex',
@@ -205,10 +243,10 @@ const userData = useContext(UserContext)
               Bid Now
             </Button>}
           </View>
-          
-       
+
+
         </ScrollView>
-        
+
       </View>
     </>
   );

@@ -6,7 +6,7 @@ import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
 
-export default function ItemCardCollector({ id,title, amount, price, status, maxBid, navigation, newBid, unit }) {
+export default function ItemCardCollector({ id,title, amount, price, status, maxBid, navigation, newBid, unit, setIsUpdate, isUpdate, setShowSpinner }) {
     const _handleOnClick = () => {
         navigation.navigate("Bidding", {
             isEditing: false, 
@@ -22,9 +22,29 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
         navigation.navigate("Bidding", {
             isEditing: true,
            id:id,
+           
 
         })
+        console.log(id)
     };
+
+    const cancelBid= async()=>{
+       // setShowSpinner(true)
+        const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`,
+        {
+            method:'delete',
+            headers:{
+                'Content-Type': 'application/json',
+            }
+        })
+
+        const data = await response.json();
+        console.log(data);
+        console.log(id)
+        setIsUpdate(true)
+        //setShowSpinner(false)
+
+    }
 
     return (
         <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
@@ -58,7 +78,8 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
                     onPress={_handleOnClick}>Bid Now</Button> :
                     <View style={{ display: 'flex', flexDirection: "row", justifyContent: "flex-end", alignItems: "center", width: "100%" }}>
                         <Button color='#48a7fa' icon={'playlist-edit'}
-                            onPress={_handleOnClick2}>Edit</Button><Button color='#fa4848' icon={'cancel'} >Cancel</Button></View>}
+                            onPress={_handleOnClick2}>Edit</Button>
+                            <Button color='#fa4848' icon={'cancel'} onPress={()=>{cancelBid()}}>Cancel</Button></View>}
 
 
             </Card.Actions>

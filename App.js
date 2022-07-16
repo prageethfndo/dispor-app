@@ -51,7 +51,7 @@ const App: () => Node = () => {
 
 
         <Stack.Screen name='CollectorMode' options={{ title: "", headerShown: false }}>
-          {props => <CollectorMode {...props} accentColor={accentColor} />}
+          {props => <CollectorMode {...props} accentColor={accentColor}  isUpdate={isUpdate} setIsUpdate={setIsUpdate}/>}
         </Stack.Screen>
 
         <Stack.Screen name='NewListing' options={{
@@ -78,7 +78,7 @@ const App: () => Node = () => {
           }, headerTitleStyle: { color: "#fff" },
           headerTintColor: '#fff', headerShadowVisible: false
         }}>
-          {props => <Bidding {...props} accentColor={accentColor} showToast={showToast} />}
+          {props => <Bidding {...props} accentColor={accentColor} showToast={showToast} isUpdate={isUpdate} setIsUpdate={setIsUpdate}/>}
         </Stack.Screen>
 
       </Stack.Navigator>

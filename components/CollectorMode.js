@@ -12,33 +12,45 @@ import ResponseData from '../temp/ResponseData'
 import { transform } from '@babel/core';
 import TabBar from './TabBar';
 import { UserContext } from '../context/userContext';
+import Spinner from './Spinner';
 
-export default function CollectorMode({ accentColor, navigation }) {
+export default function CollectorMode({ accentColor, navigation, isUpdate, setIsUpdate }) {
     const [bidedItems, setBidedItems] = useState([])
-    
-    const userData = useContext(UserContext)
-    useEffect(() => {
-        const endpoint=`https://dispor-api.herokuapp.com/users/${userData.userid}/bids`
-       // setBidedItems(ResponseData)
+    const [showSpinner, setShowSpinner]= useState("none")
 
-        const getUserBidList= async()=>{
-            const response = await fetch(endpoint,{
-                method:'get',
-                headers:{
+    const userData = useContext(UserContext)
+   
+    useEffect(() => {
+        
+        const endpoint = `https://dispor-api.herokuapp.com/users/${userData.userid}/bids`
+        // setBidedItems(ResponseData)
+
+        const getUserBidList = async () => {
+            setShowSpinner("flex")
+            const response = await fetch(endpoint, {
+                method: 'get',
+                headers: {
                     'Content-Type': 'application/json',
                 }
             })
-
+           
             const data = await response.json()
-            
+
             setBidedItems(data)
             console.log(data)
-     
+
+            setShowSpinner("none")
         }
 
         getUserBidList().catch(console.log)
+
+
         console.log(bidedItems)
-    }, [])
+        setIsUpdate(false)
+      
+    }, [isUpdate])
+
+   
 
     return (
 
@@ -60,34 +72,35 @@ export default function CollectorMode({ accentColor, navigation }) {
                 </Button>
             </View>
 
-
+            <Spinner display={showSpinner}/>
 
             <ScrollView
                 contentContainerStyle={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    minHeight: '100%'
+                    justifyContent: 'flex-start',
+                    minHeight: '100%',
+
 
                 }}
                 style={{ width: '100%', height: '90%' }}>
 
                 {bidedItems.map((item) => {
                     return (
-                        <ItemCardCollector key={item.id} title={item.listing.title}
+                        <ItemCardCollector key={item.id} title={item.listing.title} id={item.id}
                             amount={item.listing.weight} price={item.amount} status={item.status}
                             maxBid={item.maxBid}
-                          
+                            isUpdate={isUpdate} setIsUpdate={setIsUpdate}
                             navigation={navigation}
-                            newBid={false} />)
+                            newBid={false} setShowSpinner={setShowSpinner}/>)
                 }
                 )}
 
 
 
             </ScrollView>
-          <TabBar  navigation={navigation} role={'collector'}/>
+            <TabBar navigation={navigation} role={'collector'} />
 
         </View>
     )
