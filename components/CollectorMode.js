@@ -7,17 +7,37 @@ import StatsCard from './StatsCard';
 import { Subheading, FAB, Button } from 'react-native-paper';
 import ItemCardCollector from './ItemCardCollector';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ResponseData from '../temp/ResponseData'
 import { transform } from '@babel/core';
 import TabBar from './TabBar';
+import { UserContext } from '../context/userContext';
 
 export default function CollectorMode({ accentColor, navigation }) {
     const [bidedItems, setBidedItems] = useState([])
-
+    
+    const userData = useContext(UserContext)
     useEffect(() => {
-        setBidedItems(ResponseData)
+        const endpoint=`https://dispor-api.herokuapp.com/users/${userData.userid}/bids`
+       // setBidedItems(ResponseData)
 
+        const getUserBidList= async()=>{
+            const response = await fetch(endpoint,{
+                method:'get',
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            })
+
+            const data = await response.json()
+            
+            setBidedItems(data)
+            console.log(data)
+     
+        }
+
+        getUserBidList().catch(console.log)
+        console.log(bidedItems)
     }, [])
 
     return (
@@ -53,12 +73,12 @@ export default function CollectorMode({ accentColor, navigation }) {
                 }}
                 style={{ width: '100%', height: '90%' }}>
 
-                {bidedItems.map((card) => {
+                {bidedItems.map((item) => {
                     return (
-                        <ItemCardCollector key={card.id} title={card.title}
-                            amount={card.amount} price={card.price} status={card.status}
-                            maxBid={card.maxBid}
-                            unit={card.unit}
+                        <ItemCardCollector key={item.id} title={item.listing.title}
+                            amount={item.listing.weight} price={item.amount} status={item.status}
+                            maxBid={item.maxBid}
+                          
                             navigation={navigation}
                             newBid={false} />)
                 }

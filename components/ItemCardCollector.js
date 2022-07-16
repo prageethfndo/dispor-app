@@ -40,6 +40,8 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
 
                         <Text style={Styles.itemCardWeight}>{amount}{"g"}</Text>
+                     
+                       {(newBid==false)?<View><Text/><Text style={Styles.itemCardText}>Your bid:</Text></View>:null} 
                         <Text style={Styles.itemCardPrice}>{price} LKR</Text>
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
