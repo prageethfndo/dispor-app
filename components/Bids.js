@@ -12,7 +12,7 @@ import { useState, useEffect } from 'react';
 
 export default function Bids({accentColor,  route}){
     const { id,title, weight, price, status } = route.params;
-    const [bidData, setBidData]= useState([{name:""}])
+    const [bidData, setBidData]= useState([{amount:"", user:{name:""}}])
 
 
     useEffect(()=>{
@@ -66,10 +66,10 @@ export default function Bids({accentColor,  route}){
           {bidData.map((item)=>{
                 return(
                     <View key={item.id}>
-                          <DataTable.Row key={item.id}> 
-                    <DataTable.Cell>{item.user.name}</DataTable.Cell>
-                    <DataTable.Cell numeric>{item.amount}</DataTable.Cell>
-                  </DataTable.Row>
+                        <DataTable.Row key={item.id}>
+                            <DataTable.Cell>{item.user.name}</DataTable.Cell>
+                            <DataTable.Cell numeric>{item.amount} LKR</DataTable.Cell>
+                        </DataTable.Row>
                     </View>
                   
                 )
