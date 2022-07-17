@@ -15,10 +15,10 @@ import NewListing from './components/NewListing.js';
 import Bidding from './components/Bidding.js';
 import { NavigationContainer, useLinkProps } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Toast from './components/Toast';
 import Bids from './components/Bids';
-
+import { UserContext } from './context/userContext';
 
 
 
@@ -27,6 +27,13 @@ const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
 
+ const [userId, setUserId] = useState()
+
+ useEffect(()=>{
+setUserId("62cdbb4bdb143b43a1b5d147")
+ },[])
+ 
+ 
   const showToast = (text) => {
     ToastAndroid.show( text , ToastAndroid.SHORT);
 };
@@ -37,6 +44,7 @@ const App: () => Node = () => {
   //change
   return (
     <><NavigationContainer>
+      <UserContext.Provider value={{userid:userId}}>
         <Stack.Navigator>
         <Stack.Screen name='Login' options={{ title: "", headerShown: false }}>
           {props => <Login {...props} accentColor={accentColor} showToast={showToast}/>}
@@ -93,7 +101,7 @@ const App: () => Node = () => {
 
       </Stack.Navigator>
       {/** <SellerMode accentColor={accentColor} /> */}
-     
+      </UserContext.Provider>
     </NavigationContainer>
    
     </>
