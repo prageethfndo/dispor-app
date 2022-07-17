@@ -53,6 +53,7 @@ export default function Listings({ navigation }) {
                             maxBid={item.maxBid}
                             status={item.status}
                             navigation={navigation}
+                            listingId={item.id}
                             newBid={true}
                         />)
 

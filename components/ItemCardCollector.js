@@ -69,7 +69,9 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
 
 
     useEffect(() => {
-        getMaxBid().catch(console.log)
+        
+         getMaxBid().catch(console.log)
+        
     }, [])
     return (
         <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
