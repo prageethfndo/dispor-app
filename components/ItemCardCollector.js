@@ -5,8 +5,9 @@ import AppBar from './AppBar';
 import Profile from './Profile';
 import StatsCard from './StatsCard';
 import { Subheading, Card, Title, Button, Divider } from 'react-native-paper';
+import { useEffect, useState } from 'react';
 
-export default function ItemCardCollector({ id,title, amount, price, status, maxBid, navigation, newBid, unit, setIsUpdate, isUpdate, setShowSpinner }) {
+export default function ItemCardCollector({ id,title, amount, price, status, maxBid, navigation, newBid, listingId, unit, setIsUpdate, isUpdate, setShowSpinner }) {
     const _handleOnClick = () => {
         navigation.navigate("Bidding", {
             isEditing: false, 
@@ -28,6 +29,7 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
         console.log(id)
     };
 
+    const [highestBid, setHighestBid] = useState(0)
     const cancelBid= async()=>{
        // setShowSpinner(true)
         const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`,
@@ -46,6 +48,29 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
 
     }
 
+    const getMaxBid= async()=>{
+        console.log(id)
+        const response = await fetch(`https://dispor-api.herokuapp.com/listings/${listingId}/bids`,
+        {
+            method:'get',
+            headers:{
+                'Content-Type': 'application/json',
+            }
+        })
+
+        const data = await response.json();
+        console.log("bids-> "+data)
+        
+        const maxValueOfY = Math.max(...data.map(o => o.amount), 0);
+        console.log(maxValueOfY)
+        setHighestBid(maxValueOfY)
+        //setShowSpinner(false)
+    } 
+
+
+    useEffect(() => {
+        getMaxBid().catch(console.log)
+    }, [])
     return (
         <Card style={Styles.itemCard} onPress={() => { console.log('tapped') }}>
 
@@ -66,7 +91,7 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
                     </View>
                     <View style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
                         <Text style={Styles.itemCardText}>Status: {status}</Text>
-                        <Text style={Styles.itemCardText}>Highest Bid: {maxBid} LKR</Text>
+                        <Text style={Styles.itemCardText}>Highest Bid: {highestBid} LKR</Text>
 
                     </View>
                 </View>

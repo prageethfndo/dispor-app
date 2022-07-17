@@ -91,6 +91,7 @@ export default function CollectorMode({ accentColor, navigation, isUpdate, setIs
                         <ItemCardCollector key={item.id} title={item.listing.title} id={item.id}
                             amount={item.listing.weight} price={item.amount} status={item.status}
                             maxBid={item.maxBid}
+                            listingId={item.listing.id}
                             isUpdate={isUpdate} setIsUpdate={setIsUpdate}
                             navigation={navigation}
                             newBid={false} setShowSpinner={setShowSpinner}/>)
