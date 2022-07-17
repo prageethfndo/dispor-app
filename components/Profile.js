@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import user from '../assests/img/user.png';
 import StatsCard from './StatsCard';
 
-export default function Profile({ username, role, toggle }) {
+export default function Profile({ username, role, toggle, value1, value2 }) {
 
     const [isMinimized, setIsMinimized] = useState(true)
 
@@ -51,8 +51,8 @@ export default function Profile({ username, role, toggle }) {
                 style={{ scaleY: fadeAnim }}>
 
                 {(isMinimized === true) ? (role.toLowerCase()) === 'collector' && <View style={styles.cardRow}>
-                    <StatsCard title={'Spent'} value={'574545 '} unit={'LKR'} type={'earnings'} />
-                    <StatsCard title={'Bought'} value={'500 '} unit={'KG'} />
+                    <StatsCard title={'Spent'} value={value1} unit={'LKR'} type={'earnings'} />
+                    <StatsCard title={'Bought'} value={value2} unit={'KG'} />
                 </View> ||
                     <View style={styles.cardRow}>
                         <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'} />

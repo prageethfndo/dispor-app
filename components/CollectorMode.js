@@ -17,41 +17,78 @@ import Spinner from './Spinner';
 export default function CollectorMode({ accentColor, navigation, isUpdate, setIsUpdate }) {
     const [bidedItems, setBidedItems] = useState([])
     const [showSpinner, setShowSpinner]= useState("none")
+    const [value1, setValue1]= useState(0)
+    const [value2, setValue2] = useState(0)
 
     const userData = useContext(UserContext)
-   
-    useEffect(() => {
+    const endpoint = `https://dispor-api.herokuapp.com/users/${userData.userid}/bids`
+    // setBidedItems(ResponseData)
+    
+    const getUserBidList = async () => {
+        setShowSpinner("flex")
+        const response = await fetch(endpoint, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+       
+        const data = await response.json()
+
+        setBidedItems(data)
+        console.log(data)
+
+        setShowSpinner("none")
+        bidedItems.forEach(element=>{
+            sum+=element.amount
+        })
+        console.log("sum"+sum)
+        setValue1(sum)
+       // computeStats()
+    }
+
+    useEffect(()=>{
         
-        const endpoint = `https://dispor-api.herokuapp.com/users/${userData.userid}/bids`
-        // setBidedItems(ResponseData)
+        bidedItems.forEach(element=>{
+            sum+=element.amount
+            setValue1(value1+element.amount)
+            
+            console.log(value1)
+        })
+       
+        
+    },[])
 
-        const getUserBidList = async () => {
-            setShowSpinner("flex")
-            const response = await fetch(endpoint, {
-                method: 'get',
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            })
-           
-            const data = await response.json()
+    useEffect(() => {
+       
 
-            setBidedItems(data)
-            console.log(data)
-
-            setShowSpinner("none")
-        }
 
         getUserBidList().catch(console.log)
 
 
         console.log(bidedItems)
         setIsUpdate(false)
+
+       
       
+        
     }, [isUpdate])
 
-   
 
+    
+  
+   
+     
+        
+
+    const computeStats = ()=>{
+        bidedItems.forEach(element=>{
+            sum+=element.amount
+        })
+        console.log("sum"+sum)
+        setValue1(sum)
+
+    }
     return (
 
         <View style={{
@@ -62,7 +99,7 @@ export default function CollectorMode({ accentColor, navigation, isUpdate, setIs
 
             height: '100%'
         }} >
-            <Profile username={'Kumara'} role={'collector'} toggle={true} />
+            <Profile username={'Kumara'} role={'collector'} toggle={true} value1={value1} value2={"200"}/>
 
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>
