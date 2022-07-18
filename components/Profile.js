@@ -2,18 +2,77 @@ import * as React from 'react';
 import styles from './Styles';
 import { DataTable, Subheading, Appbar, Text, Avatar, Button, IconButton } from 'react-native-paper';
 import { StyleSheet, View, Image, ScrollView, Animated } from 'react-native';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useContext,useEffect, useRef } from 'react';
 import user from '../assests/img/user.png';
 import StatsCard from './StatsCard';
-
-export default function Profile({ username, role, toggle, value1, value2 }) {
+import { UserContext } from '../context/userContext';
+export default function Profile({ username, role, toggle, }) {
 
     const [isMinimized, setIsMinimized] = useState(true)
+    const [value1, setValue1]= useState(0)
+    const [value2, setValue2]= useState(0)
+
+    const userData = useContext(UserContext)
 
     useEffect(() => {
         setIsMinimized(toggle)
     }, [toggle])
 
+    useEffect(()=>{
+        const computeStats= async()=>{
+            if(role==='collector')
+            {
+                const response = await fetch(`https://dispor-api.herokuapp.com/users/${userData.userid}/bids`,
+                {
+                    method:'get',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    }
+                },
+                
+                )
+    
+                const data = await response.json()
+                console.log(data)
+                var sumOfVal1 = 0;
+                var sumofVal2 = 0;
+                data.forEach(element => {
+                    sumOfVal1 = sumOfVal1+element.amount
+                    sumofVal2 = sumofVal2 + element.listing.weight
+                });
+                setValue1(sumOfVal1)
+                setValue2(sumofVal2)
+                console.log("sum"+sumOfVal1)
+            }
+            else
+            {
+                const response = await fetch(`https://dispor-api.herokuapp.com/users/${userData.userid}/listings`,
+                {
+                    method:'get',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    }
+                },
+                
+                )
+    
+                const data = await response.json()
+                console.log(data)
+                var sumOfVal1 = 0;
+                var sumofVal2 = 0;
+                data.forEach(element => {
+                    sumOfVal1 = sumOfVal1+element.price
+                    sumofVal2 = sumofVal2 + element.weight
+                });
+                setValue1(sumOfVal1)
+                setValue2(sumofVal2)
+                console.log("sum"+sumOfVal1)
+            }
+           
+        }
+
+        computeStats().catch(console.log)
+    },[])
     const fadeAnim = useRef(new Animated.Value(-0)).current  // Initial value for opacity: 0
 
     useEffect(() => {
@@ -55,8 +114,8 @@ export default function Profile({ username, role, toggle, value1, value2 }) {
                     <StatsCard title={'Bought'} value={value2} unit={'KG'} />
                 </View> ||
                     <View style={styles.cardRow}>
-                        <StatsCard title={'Earnings'} value={'574545 '} unit={'LKR'} type={'earnings'} />
-                        <StatsCard title={'Sold'} value={'500 '} unit={'KG'} />
+                        <StatsCard title={'Estimated Earnings'} value={value1} unit={'LKR'} type={'earnings'} />
+                        <StatsCard title={'Estimated Sales'} value={value2} unit={'KG'} />
                     </View> : null
                 }
                 {/** toggle cards. Change the button icon according to the state*/}

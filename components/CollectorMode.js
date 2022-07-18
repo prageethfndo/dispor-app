@@ -39,25 +39,10 @@ export default function CollectorMode({ accentColor, navigation, isUpdate, setIs
         console.log(data)
 
         setShowSpinner("none")
-        bidedItems.forEach(element=>{
-            sum+=element.amount
-        })
-        console.log("sum"+sum)
-        setValue1(sum)
-       // computeStats()
+      
+      
     }
 
-    useEffect(()=>{
-        
-        bidedItems.forEach(element=>{
-            sum+=element.amount
-            setValue1(value1+element.amount)
-            
-            console.log(value1)
-        })
-       
-        
-    },[])
 
     useEffect(() => {
        
