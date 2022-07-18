@@ -54,7 +54,7 @@ export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpda
             height: '100%'
         }}>
             
-            <Profile username={'Kumara'} role={'seller'} toggle={true} />
+            <Profile username={userData.name} role={'seller'} toggle={true} />
 
         
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>

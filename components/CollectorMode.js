@@ -84,7 +84,7 @@ export default function CollectorMode({ accentColor, navigation, isUpdate, setIs
 
             height: '100%'
         }} >
-            <Profile username={'Kumara'} role={'collector'} toggle={true} value1={value1} value2={"200"}/>
+            <Profile username={userData.name} role={'collector'} toggle={true} value1={value1} value2={"200"}/>
 
 
             <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '90%', height: 80 }}>

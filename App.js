@@ -44,7 +44,7 @@ setUserId("62cdbb4bdb143b43a1b5d147")
   //change
   return (
     <><NavigationContainer>
-      <UserContext.Provider value={{userid:userId}}>
+      <UserContext.Provider value={{userid:userId, name:"Venusha Dushmantha"}}>
         <Stack.Navigator>
         <Stack.Screen name='Login' options={{ title: "", headerShown: false }}>
           {props => <Login {...props} accentColor={accentColor} showToast={showToast}/>}
