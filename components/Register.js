@@ -27,9 +27,20 @@ export default function Register({accentColor, navigation,showToast}) {
       return false}
     else return true
   }
-  const handleRegistration=async()=>{
+  const contactValidation=()=>{
+    if(contact.length!=10 && isNaN(contact))
+    {
+      showToast("Invalid contact number")
+      return false
+    }
+    else return true
+  }
+
   
-    if(emailValidation && passwordValidation )
+  const handleRegistration=async()=>{
+  var passwordStatus = passwordValidation()
+  var contactStatus = contactValidation()
+    if(emailValidation && passwordStatus && contactStatus )
     {
       const response = await fetch("https://dispor-api.herokuapp.com/users",{
         method:"post",
@@ -47,6 +58,15 @@ export default function Register({accentColor, navigation,showToast}) {
 
       const data = await response.json()
       console.log(data)
+      showToast("Please Wait...")
+      if(data.error)
+      {
+        showToast("Oops, Something went wrong")
+      }
+      else
+      {
+        navigation.navigate('Login')
+      }
 
      
     }

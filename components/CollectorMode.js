@@ -14,7 +14,7 @@ import TabBar from './TabBar';
 import { UserContext } from '../context/userContext';
 import Spinner from './Spinner';
 
-export default function CollectorMode({ accentColor, navigation, isUpdate, setIsUpdate }) {
+export default function CollectorMode({ accentColor, navigation, isUpdate, setIsUpdate, setUserContext }) {
     const [bidedItems, setBidedItems] = useState([])
     const [showSpinner, setShowSpinner]= useState("none")
     const [value1, setValue1]= useState(0)
@@ -123,7 +123,7 @@ export default function CollectorMode({ accentColor, navigation, isUpdate, setIs
 
 
             </ScrollView>
-            <TabBar navigation={navigation} role={'collector'} />
+            <TabBar navigation={navigation} role={'collector'} setUserContext={setUserContext} />
 
         </View>
     )

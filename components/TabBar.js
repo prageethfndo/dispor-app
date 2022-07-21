@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import ResponseData from '../temp/ResponseData'
 import { transform } from '@babel/core';
 
-export default function TabBar({ navigation, role, route }) {
+export default function TabBar({ navigation, role, route,setUserContext }) {
     const handelNavigation = (comp) => {
 
         navigation.navigate(comp)
@@ -21,6 +21,11 @@ export default function TabBar({ navigation, role, route }) {
         const homeNavigation=()=>{
             (role==='collector') ? navigation.navigate("CollectorMode"):navigation.navigate("SellerMode")
         }
+    }
+
+    const logout=()=>{
+        navigation.navigate("Login")
+        setUserContext("","")
     }
     return (
         <View style={Styles.TabBar}>
@@ -35,8 +40,8 @@ export default function TabBar({ navigation, role, route }) {
                         navigation.navigate('NewListing', { isEditing: false })
                     }} />}
 
-            <IconButton icon={'account'} color={'#fff'} size={30} />
-            <IconButton icon={'logout'} color={'#fff'} size={30} />
+           {/* <IconButton icon={'account'} color={'#fff'} size={30} />*/}
+            <IconButton icon={'logout'} color={'#fff'} size={30} onPress={()=>{logout()}}/>
 
         </View>
     )

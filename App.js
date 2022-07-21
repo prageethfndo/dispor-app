@@ -62,12 +62,14 @@ const App: () => Node = () => {
         </Stack.Screen>
 
         <Stack.Screen name='SellerMode' options={{ title: "", headerShown: false }}>
-          {props => <SellerMode {...props} accentColor={accentColor} isUpdate={isUpdate} setIsUpdate={setIsUpdate} showToast={showToast}/>}
+          {props => <SellerMode {...props} accentColor={accentColor} isUpdate={isUpdate} 
+          setIsUpdate={setIsUpdate} showToast={showToast} setUserContext={setUserContext}/>}
         </Stack.Screen>
 
 
         <Stack.Screen name='CollectorMode' options={{ title: "", headerShown: false }}>
-          {props => <CollectorMode {...props} accentColor={accentColor}  isUpdate={isUpdate} setIsUpdate={setIsUpdate}/>}
+          {props => <CollectorMode {...props} accentColor={accentColor}  isUpdate={isUpdate} 
+          setIsUpdate={setIsUpdate} setUserContext={setUserContext}/>}
         </Stack.Screen>
 
         <Stack.Screen name='NewListing' options={{

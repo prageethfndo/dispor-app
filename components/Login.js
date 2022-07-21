@@ -8,7 +8,7 @@ import { Button, Switch, TextInput } from 'react-native-paper';
 import type { Node } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import styles from './Styles'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Login({ accentColor, navigation, showToast , setUserContext}) {
 
@@ -23,6 +23,7 @@ export default function Login({ accentColor, navigation, showToast , setUserCont
   const [password, setPassword] = useState("")
   let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
+  
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn)
 

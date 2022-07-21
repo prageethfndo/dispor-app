@@ -14,7 +14,7 @@ import { UserContext } from '../context/userContext';
 import Spinner from './Spinner';
 
 
-export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpdate, showToast }) {
+export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpdate, showToast, setUserContext }) {
 
     const userData = useContext(UserContext)
 
@@ -95,7 +95,7 @@ export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpda
 
 
             </ScrollView>
-            <TabBar navigation={navigation} role={'seller'} />
+            <TabBar navigation={navigation} role={'seller'} setUserContext={setUserContext}/>
 
         </View>
     )
