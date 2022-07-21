@@ -10,7 +10,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import styles from './Styles'
 import { useState } from 'react';
 
-export default function Login({ accentColor, navigation, showToast }) {
+export default function Login({ accentColor, navigation, showToast , setUserContext}) {
 
 
   const [isSwitchOn, setIsSwitchOn] = useState(false);
@@ -61,10 +61,15 @@ export default function Login({ accentColor, navigation, showToast }) {
       })
       })
 
-      const data = await response.text()
+      const data = await response.json()
       console.log(data)
       //console.log(response)
-     // if(data.error){await showToast(data.error)}
+      if(data.error){await showToast(data.error)}
+      else{
+      //  LoginRouter()
+        setUserContext(data.id,data.name)
+        LoginRouter()
+      }
     //  LoginRouter()
     //  LoginRouter()
     }

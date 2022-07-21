@@ -28,9 +28,10 @@ const Stack = createNativeStackNavigator();
 const App: () => Node = () => {
 
  const [userId, setUserId] = useState()
+ const [username, setUsername]= useState()
 
  useEffect(()=>{
-setUserId("62cdbb4bdb143b43a1b5d147")
+//setUserId("62cdbb4bdb143b43a1b5d147")
  },[])
  
  
@@ -40,14 +41,20 @@ setUserId("62cdbb4bdb143b43a1b5d147")
   //set the global accent color for all components
   const accentColor = '#17AF82';
 
+  const setUserContext=(userid, username)=>{
+    setUserId(userid)
+    setUsername(username)
+    console.log(username + userid)
+  }
+
   const [isUpdate, setIsUpdate] = useState(false)
   //change
   return (
     <><NavigationContainer>
-      <UserContext.Provider value={{userid:userId, name:"Venusha Dushmantha"}}>
+      <UserContext.Provider value={{userid:userId, name:username}}>
         <Stack.Navigator>
         <Stack.Screen name='Login' options={{ title: "", headerShown: false }}>
-          {props => <Login {...props} accentColor={accentColor} showToast={showToast}/>}
+          {props => <Login {...props} accentColor={accentColor} showToast={showToast} setUserContext={setUserContext}/>}
         </Stack.Screen>
 
         <Stack.Screen name='Register' options={{ title: "", headerShown: false }}>
