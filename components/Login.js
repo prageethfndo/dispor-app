@@ -21,7 +21,7 @@ export default function Login({ accentColor, navigation, showToast }) {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
+  let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
 
   const onToggleSwitch = () => {
     setIsSwitchOn(!isSwitchOn)
@@ -46,11 +46,27 @@ export default function Login({ accentColor, navigation, showToast }) {
   }
 
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     //
-    if(username!="" && password !="")
+    if(username!="" && password !="" && emailRegex.test(username))
     {
-      LoginRouter()
+      const response = await fetch("https://dispor-api.herokuapp.com/login",{
+        method:"post",
+        headers:{
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: username,
+        password:password
+      })
+      })
+
+      const data = await response.text()
+      console.log(data)
+      //console.log(response)
+     // if(data.error){await showToast(data.error)}
+    //  LoginRouter()
+    //  LoginRouter()
     }
 
     else

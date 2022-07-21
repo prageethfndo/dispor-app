@@ -8,8 +8,55 @@ import {Button} from 'react-native-paper';
 import type {Node} from 'react';
 import {StyleSheet, Text, View, Image, ScrollView} from 'react-native';
 import styles from './Styles';
+import { useState } from 'react';
 
-export default function Register({accentColor, navigation}) {
+export default function Register({accentColor, navigation,showToast}) {
+  let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [contact, setContact] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const emailValidation = emailRegex.test(email);
+  const passwordValidation = () => {
+    if (password != confirmPassword || password.length < 10) {
+      showToast("Check your password again")
+      console.log(password.length)
+      return false}
+    else return true
+  }
+  const handleRegistration=async()=>{
+  
+    if(emailValidation && passwordValidation )
+    {
+      const response = await fetch("https://dispor-api.herokuapp.com/users",{
+        method:"post",
+        headers:{
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: name,
+          email: email,
+          address: address,
+          contact: contact,
+          password:password
+      })
+      })
+
+      const data = await response.json()
+      console.log(data)
+
+     
+    }
+
+    else
+    {
+      showToast("Oops! Please Check your inputs again")
+    }
+   
+  }
   //styles are moved into Styles.js (global)
   return (
     <>
@@ -34,6 +81,8 @@ export default function Register({accentColor, navigation}) {
             placeholder="Enter Your Name"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
+            value={name}
+            onChangeText={(text)=>{setName(text)}}
           />
           <TextInput
             style={styles.textBox}
@@ -41,6 +90,8 @@ export default function Register({accentColor, navigation}) {
             placeholder="Enter Your Email"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
+            value={email}
+            onChangeText={(text)=>{setEmail(text)}}
           />
           <TextInput
             style={styles.textBox}
@@ -48,6 +99,8 @@ export default function Register({accentColor, navigation}) {
             placeholder="Enter Your Address"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
+            value={address}
+            onChangeText={(text)=>{setAddress(text)}}
           />
           <TextInput
             style={styles.textBox}
@@ -55,14 +108,19 @@ export default function Register({accentColor, navigation}) {
             placeholder="Enter Your Contact Number"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
+            value={contact}
+            onChangeText={(text)=>{setContact(text)}}
+    
           />
           <TextInput
             style={styles.textBox}
-            label="Password"
+            label="Password (10 characters or more)"
             secureTextEntry
             placeholder="Enter Password"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
+            value={password}
+            onChangeText={(text)=>{setPassword(text)}}
           />
           <TextInput
             style={styles.textBox}
@@ -71,10 +129,12 @@ export default function Register({accentColor, navigation}) {
             placeholder="Enter Password Again"
             underlineColor={accentColor}
             activeUnderlineColor={accentColor}
+            value={confirmPassword}
+            onChangeText={(text)=>{setConfirmPassword(text)}}
           />
           <Button
             mode="contained"
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => handleRegistration()}
             style={styles.regBtn}
             color={accentColor}>
             Register

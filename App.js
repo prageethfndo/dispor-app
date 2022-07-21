@@ -51,7 +51,7 @@ setUserId("62cdbb4bdb143b43a1b5d147")
         </Stack.Screen>
 
         <Stack.Screen name='Register' options={{ title: "", headerShown: false }}>
-          {props => <Register {...props} accentColor={accentColor} />}
+          {props => <Register {...props} accentColor={accentColor} showToast={showToast}/>}
         </Stack.Screen>
 
         <Stack.Screen name='SellerMode' options={{ title: "", headerShown: false }}>
