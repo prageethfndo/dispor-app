@@ -57,7 +57,7 @@ export default function Login({ accentColor, navigation, showToast , setUserCont
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: username,
+        email: username.toLowerCase(),
         password:password
       })
       })

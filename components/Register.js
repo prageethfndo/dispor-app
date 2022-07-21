@@ -49,7 +49,7 @@ export default function Register({accentColor, navigation,showToast}) {
       },
       body: JSON.stringify({
         name: name,
-          email: email,
+          email: email.toLocaleLowerCase(),
           address: address,
           contact: contact,
           password:password
