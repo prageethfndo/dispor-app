@@ -43,7 +43,7 @@ export default function Bids({accentColor,  route}){
            
           </DataTable.Row>
           <DataTable.Row>
-            <DataTable.Cell>ITEM WEIGHT: {weight}</DataTable.Cell>
+            <DataTable.Cell>ITEM WEIGHT: {weight} G</DataTable.Cell>
             
           </DataTable.Row>
           <DataTable.Row>
