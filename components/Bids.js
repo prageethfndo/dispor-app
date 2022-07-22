@@ -44,7 +44,7 @@ export default function Bids({accentColor,  route}){
           </DataTable.Row>
           <DataTable.Row>
             <DataTable.Cell>ITEM WEIGHT: {weight}</DataTable.Cell>
-            <DataTable.Cell numeric>Highest Bid: 1000000LKR</DataTable.Cell>
+            
           </DataTable.Row>
           <DataTable.Row>
             <DataTable.Cell>PRICE: {price}</DataTable.Cell>
