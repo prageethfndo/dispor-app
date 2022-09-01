@@ -32,7 +32,7 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
     const [highestBid, setHighestBid] = useState(0)
     const cancelBid= async()=>{
        // setShowSpinner(true)
-        const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`,
+        const response = await fetch(`https://dispor-api.fly.dev/bids/${id}`,
         {
             method:'delete',
             headers:{
@@ -50,7 +50,7 @@ export default function ItemCardCollector({ id,title, amount, price, status, max
 
     const getMaxBid= async()=>{
         console.log(id)
-        const response = await fetch(`https://dispor-api.herokuapp.com/listings/${listingId}/bids`,
+        const response = await fetch(`https://dispor-api.fly.dev/listings/${listingId}/bids`,
         {
             method:'get',
             headers:{

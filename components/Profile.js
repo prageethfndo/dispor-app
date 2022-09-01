@@ -22,7 +22,7 @@ export default function Profile({ username, role, toggle, }) {
         const computeStats= async()=>{
             if(role==='collector')
             {
-                const response = await fetch(`https://dispor-api.herokuapp.com/users/${userData.userid}/bids`,
+                const response = await fetch(`https://dispor-api.fly.dev/users/${userData.userid}/bids`,
                 {
                     method:'get',
                     headers:{
@@ -46,7 +46,7 @@ export default function Profile({ username, role, toggle, }) {
             }
             else
             {
-                const response = await fetch(`https://dispor-api.herokuapp.com/users/${userData.userid}/listings`,
+                const response = await fetch(`https://dispor-api.fly.dev/users/${userData.userid}/listings`,
                 {
                     method:'get',
                     headers:{

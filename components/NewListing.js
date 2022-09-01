@@ -51,7 +51,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
     isEditing,
     id } = route.params;
 
-  const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`;
+  const endpoint = `https://dispor-api.fly.dev/listings/${id}`;
   useEffect(() => {
     console.log(isSwitchOn)
     const getData = async () => {
@@ -72,7 +72,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
 
     const getItems = async () => {
 
-      const response = await fetch("https://dispor-api.herokuapp.com/items", {
+      const response = await fetch("https://dispor-api.fly.dev/items", {
         method: 'get', headers: {
           'Content-Type': 'application/json',
         },
@@ -118,7 +118,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
     else { return weight * unitWeight }
   }
   const createListing = async () => {
-    const response = await fetch("https://dispor-api.herokuapp.com/listings", {
+    const response = await fetch("https://dispor-api.fly.dev/listings", {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

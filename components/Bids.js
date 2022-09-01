@@ -17,7 +17,7 @@ export default function Bids({accentColor,  route}){
 
     useEffect(()=>{
         const getBids= async()=>{
-            const response =await fetch(`https://dispor-api.herokuapp.com/listings/${id}/bids`,{
+            const response =await fetch(`https://dispor-api.fly.dev/listings/${id}/bids`,{
                 method:'get',
                 headers:{
                     'Content-Type': 'application/json',

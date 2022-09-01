@@ -15,7 +15,7 @@ export default function Listings({ navigation }) {
     const [itemList, setItemList] = useState([])
     useEffect(() => {
         setItemList(ResponseData)
-        const endpoint="https://dispor-api.herokuapp.com/listings";
+        const endpoint="https://dispor-api.fly.dev/listings";
 
         const getListings= async()=>{
             const response = await fetch(endpoint,{

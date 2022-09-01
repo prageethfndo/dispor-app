@@ -21,7 +21,7 @@ export default function CollectorMode({ accentColor, navigation, isUpdate, setIs
     const [value2, setValue2] = useState(0)
 
     const userData = useContext(UserContext)
-    const endpoint = `https://dispor-api.herokuapp.com/users/${userData.userid}/bids`
+    const endpoint = `https://dispor-api.fly.dev/users/${userData.userid}/bids`
     // setBidedItems(ResponseData)
     
     const getUserBidList = async () => {

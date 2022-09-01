@@ -50,7 +50,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   useEffect(() => {
     console.log("item" + id)
     const getData = async () => {
-      const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`
+      const endpoint = `https://dispor-api.fly.dev/listings/${id}`
       const response = await fetch(endpoint, {
         method: "get",
         headers: {
@@ -90,7 +90,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   }, [])
 
   const editBidData = async () => {
-    const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`,
+    const response = await fetch(`https://dispor-api.fly.dev/bids/${id}`,
       {
         method: 'get', headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   }
   //function for save edit data
   const handleSaveEdit = async () => {
-    const response = await fetch(`https://dispor-api.herokuapp.com/bids/${id}`, {
+    const response = await fetch(`https://dispor-api.fly.dev/bids/${id}`, {
       method: 'put', headers: {
         'Content-Type': 'application/json',
       },
@@ -126,7 +126,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   }
 
   const getBidData = async () => {
-    const response = await fetch(`https://dispor-api.herokuapp.com/listings/${id}/bids`,
+    const response = await fetch(`https://dispor-api.fly.dev/listings/${id}/bids`,
       {
         method: 'get', headers: {
           'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export default function NewListing({ accentColor, navigation, route, showToast, 
   const handleNewBid = async () => {
     console.log("user id" + userData.userid)
     console.log("listing id" + id)
-    const response = await fetch("https://dispor-api.herokuapp.com/bids", {
+    const response = await fetch("https://dispor-api.fly.dev/bids", {
       method: "post",
       headers: {
         'Content-Type': 'application/json',

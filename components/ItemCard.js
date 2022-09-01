@@ -16,7 +16,7 @@ export default function ItemCard({ id, title, amount, price, status, navigation,
 
         })                
     }
-    const endpoint = `https://dispor-api.herokuapp.com/listings/${id}`;
+    const endpoint = `https://dispor-api.fly.dev/listings/${id}`;
     const [maxBid, setMaxBid] = useState()
 
     const deleteListing = async () => {
@@ -44,7 +44,7 @@ export default function ItemCard({ id, title, amount, price, status, navigation,
       },[id])
       
       const getMaxBid = async ()=>{
-        const response = await fetch(`https://dispor-api.herokuapp.com/listings/${id}/bids`,
+        const response = await fetch(`https://dispor-api.fly.dev/listings/${id}/bids`,
         {method:'get', headers:{
             'Content-Type': 'application/json',
         }})

@@ -42,7 +42,7 @@ export default function Register({accentColor, navigation,showToast}) {
   var contactStatus = contactValidation()
     if(emailValidation && passwordStatus && contactStatus )
     {
-      const response = await fetch("https://dispor-api.herokuapp.com/users",{
+      const response = await fetch("https://dispor-api.fly.dev/users",{
         method:"post",
         headers:{
           'Content-Type': 'application/json',

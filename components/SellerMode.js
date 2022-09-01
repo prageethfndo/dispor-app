@@ -28,7 +28,7 @@ export default function SellerMode({ accentColor, navigation, isUpdate,setIsUpda
 
         // setItemList(ResponseData)
         const getData = async () => {
-            const endpoint = `https://dispor-api.herokuapp.com/users/${userid}/listings`;
+            const endpoint = `https://dispor-api.fly.dev/users/${userid}/listings`;
             const response = await fetch(endpoint, {
                 method: 'get', headers: {
                     'Content-Type': 'application/json',

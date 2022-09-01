@@ -51,7 +51,7 @@ export default function Login({ accentColor, navigation, showToast , setUserCont
     //
     if(username!="" && password !="" && emailRegex.test(username))
     {
-      const response = await fetch("https://dispor-api.herokuapp.com/login",{
+      const response = await fetch("https://dispor-api.fly.dev/login",{
         method:"post",
         headers:{
           'Content-Type': 'application/json',
